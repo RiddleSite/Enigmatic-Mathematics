@@ -11,6 +11,17 @@
     border-width: 2px;
     padding-bottom: 2px;
 }
+
+#dropIcon {
+
+}
+#dropDownList {
+    margin: 0;
+}
+
+#dropDownListElement {
+
+}
 .navBar ul {
     display: block;
     list-style: none;
@@ -38,8 +49,26 @@
 .mainBody {
     width: 100%;
     margin-top: 8px;
-    background-color: whitesmoke;
     display: inline-block;
+}
+
+.welcomeMsg {
+    font-family: 'PT Serif', serif;
+    padding: 10px;
+    border: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    background-color: whitesmoke;
+}
+
+@media only screen and (max-width: 500px){
+
+    .logo {
+        font-size: 25px;
+    }
+    .navBar div{
+        font-size: 20px;
+    }
 }
 
 @media only screen and (max-width: 830px) {
@@ -50,5 +79,4 @@
     .navBar div {
         display: block;
     }
-
 }

@@ -2,31 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="web_effects.js"></script>
     <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
     <title>Riddles</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css"
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+
 </head>
-<body style="margin: 5;">
+<body style="margin: 10px;">
 <div class="logo">
     <header>Enigmatic Mathematics</header>
 </div>
 <nav class="navBar">
-    <ul>
-        <li>Home</li>
+    <div id="dropIcon"> &#9776 </div>
+    <ul id="dropDownList">
+        <li id="dropDownListElement">Home</li>
         <li>Log In</li>
         <li>Sign Up</li>
         <li>Riddles</li>
         <li>Contact</li>
     </ul>
-    <div> &#9776 </div>
 </nav>
 <main class="mainBody">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores consectetur et ipsum iusto labore magni neque nesciunt similique sint tempora, tempore, totam vel. Ipsam iste magni nisi quae voluptate.
-    </p>
-    <?php
-        echo "I am a god."
-    ?>
+    <div class="welcomeMsg">
+        <h style="font-size: 20px;">
+            Welcome!
+        </h>
+        <p>
+            You have arrived at Enigmatic Mathematics, the first stop for math riddlers and freakoids!
+        </p>
+    </div>
 </main>
 </body>
 </html>
