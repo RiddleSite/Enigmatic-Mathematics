@@ -9,6 +9,7 @@
     padding-left: 7px;
     border: solid;
     border-width: 2px;
+    padding-bottom: 2px;
 }
 .navBar ul {
     display: block;
@@ -40,7 +41,8 @@
     background-color: whitesmoke;
     display: inline-block;
 }
-@media only screen and (max-width: 815px) {
+
+@media only screen and (max-width: 830px) {
 
     .navBar ul{
         display: none;
@@ -48,4 +50,5 @@
     .navBar div {
         display: block;
     }
+
 }
