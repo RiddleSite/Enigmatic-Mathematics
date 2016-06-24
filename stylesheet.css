@@ -1,17 +1,35 @@
 .navBar {
-    background-color: whitesmoke;
-    width: 100%;
+    font-family: 'PT Serif', serif;
     height: 30px;
+    float: right;
 }
 
 .navBar ul {
     display: block;
     list-style: none;
     margin: 0;
-    padding-top: 5px;
+    padding-top: 4px;
 }
 
 .navBar ul li {
     display: inline;
-    padding: 6.5%
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 3px;
+    border: solid;
+    border-width: 2px;
+}
+
+.logo {
+    padding-top: 3px;
+    padding-left: 3px;
+    float: left;
+}
+
+@media only screen and (max-width: 640px) {
+
+    .navBar {
+        display: none;
+    }
+
 }
