@@ -1,0 +1,51 @@
+.navBar {
+    font-family: 'PT Serif', serif;
+    float: right;
+}
+.navBar div {
+    display: none;
+    font-size: 25px;
+    padding-right: 7px;
+    padding-left: 7px;
+    border: solid;
+    border-width: 2px;
+}
+.navBar ul {
+    display: block;
+    list-style: none;
+    margin: 0;
+    padding-top: 6px;
+}
+
+.navBar ul li {
+    display: inline;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-bottom: 3px;
+    border: solid;
+    border-width: 2px;
+}
+
+.logo {
+    padding-left: 3px;
+    display: block;
+    float: left;
+    font-family: 'Cinzel', serif;
+    font-size: 30px;
+}
+
+.mainBody {
+    width: 100%;
+    margin-top: 8px;
+    background-color: whitesmoke;
+    display: inline-block;
+}
+@media only screen and (max-width: 815px) {
+
+    .navBar ul{
+        display: none;
+    }
+    .navBar div {
+        display: block;
+    }
+}
