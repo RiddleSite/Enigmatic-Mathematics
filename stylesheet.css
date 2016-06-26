@@ -5,11 +5,12 @@
 .navBar div {
     display: none;
     font-size: 25px;
-    padding-right: 7px;
-    padding-left: 7px;
+    padding-right: 10px;
+    padding-left: 10px;
     border: solid;
     border-width: 2px;
-    padding-bottom: 2px;
+    padding-top: 6px;
+    padding-bottom: 6px;
 }
 
 #dropIcon {
@@ -36,10 +37,10 @@
     padding-bottom: 3px;
     border: solid;
     border-width: 2px;
+    background-color: white;
 }
 
 .logo {
-    padding-left: 3px;
     display: block;
     float: left;
     font-family: 'Cinzel', serif;
@@ -57,7 +58,6 @@
     padding: 10px;
     border: solid;
     border-width: 2px;
-    border-radius: 5px;
     background-color: whitesmoke;
 }
 

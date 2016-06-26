@@ -12,7 +12,7 @@
 </head>
 <body style="margin: 10px;">
 <div class="logo">
-    <header>Enigmatic Mathematics</header>
+    <header style="border: solid; border-width: 2px; padding-top: 3px; padding-bottom: 3px; padding-left: 5px; padding-right: 5px;">Enigmatic Mathematics</header>
 </div>
 <nav class="navBar">
     <div id="dropIcon"> &#9776 </div>
