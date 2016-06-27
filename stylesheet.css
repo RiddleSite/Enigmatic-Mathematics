@@ -9,13 +9,13 @@
 }
 .navBar div {
     display: none;
-    font-size: 2.5em;
-    padding-right: 1em;
-    padding-left: 1em;
+    font-size: 20px;
+    padding-right: 16px;
+    padding-left: 16px;
     border: solid;
-    border-width: .2em;
-    padding-top: .6em;
-    padding-bottom: .6em;
+    border-width: 2px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 #dropIcon {
@@ -82,16 +82,30 @@
     }
     .navBar div{
         display: block;
-        font-size: .9em;
+        font-size: 15px;
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 500px) {
 
+    .topBody {
+        height: 2em;
+    }
+    .logo {
+        text-align: center;
+        height: 37px;
+        font-size: 25px;
+    }
     .navBar ul{
         display: none;
     }
     .navBar div {
+        padding: 0;
+        margin: 0;
+        height: 37px;
+        width: 20px;
+        text-align: center;
+        font-size: 15px;
         display: block;
     }
 }
