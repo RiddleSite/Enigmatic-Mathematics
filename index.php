@@ -10,20 +10,23 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 </head>
-<body style="margin: .5em;">
-<div class="logo">
-    <header>Enigmatic Mathematics</header>
-</div>
-<nav class="navBar">
-    <div id="dropIcon"> &#9776 </div>
-    <ul id="dropDownList">
-        <li id="dropDownListElement">Home</li>
-        <li>Log In</li>
-        <li>Sign Up</li>
-        <li>Riddles</li>
-        <li>Contact</li>
-    </ul>
-</nav>
+<body>
+<header class="topBody">
+    <div class="logo">
+        <header>Enigmatic Mathematics</header>
+    </div>
+    <nav class="navBar">
+        <div id="dropIcon"> &#9776 </div>
+        <ul id="dropDownList">
+            <li id="dropDownListElement">Home</li>
+            <li>Log In</li>
+            <li>Sign Up</li>
+            <li>Riddles</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+</header>
+
 <main class="mainBody">
     <div class="welcomeMsg">
         <h1>

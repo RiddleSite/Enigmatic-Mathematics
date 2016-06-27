@@ -1,79 +1,84 @@
+.topBody {
+    width: 100%;
+    display: inline-block;
+}
+
 .navBar {
     font-family: 'PT Serif', serif;
     float: right;
 }
 .navBar div {
     display: none;
-    font-size: 25px;
-    padding-right: 10px;
-    padding-left: 10px;
+    font-size: 2.5em;
+    padding-right: 1em;
+    padding-left: 1em;
     border: solid;
-    border-width: 2px;
-    padding-top: 6px;
-    padding-bottom: 6px;
+    border-width: .2em;
+    padding-top: .6em;
+    padding-bottom: .6em;
 }
 
 #dropIcon {
     font-family: 'Cinzel', serif;
 }
 #dropDownList {
-    margin: 0;
+
 }
 
 #dropDownListElement {
 
 }
 .navBar ul {
-    display: block;
     list-style: none;
-    margin: 0;
-    padding-top: 6px;
+
 }
 
 .navBar ul li {
     display: inline;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-bottom: 3px;
+    padding-right: .5em;
+    padding-left: .5em;
     border: solid;
-    border-width: 2px;
+    border-width: .15em;
     background-color: white;
 }
 
 .logo {
-    display: block;
+    display: inline-block;
     float: left;
     font-family: 'Cinzel', serif;
-    font-size: 30px;
+    font-size: 2em;
     border: solid;
-    border-width: 2px;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
-    padding-right: 5px;
+    border-width: .1em;
+    padding-left: .3em;
+    padding-right: .3em;
 }
 
 .mainBody {
     width: 100%;
-    margin-top: 8px;
+    margin-top: .8em;
     display: inline-block;
 }
 
 .welcomeMsg {
     font-family: 'PT Serif', serif;
-    padding: 10px;
+    padding: 1em;
     border: solid;
-    border-width: 2px;
+    border-width: .2em;
     background-color: whitesmoke;
+}
+
+.welcomeMsg h1 {
+    font-size: 2em;
+    margin: 0;
 }
 
 @media only screen and (max-width: 500px){
 
     .logo {
-        font-size: 25px;
+        font-size: 2.5em;
     }
     .navBar div{
-        font-size: 20px;
+        font-size: 2em;
     }
 }
 
@@ -86,17 +91,6 @@
         display: block;
     }
 }
-@media only screen
-and (max-device-width: 350px)
-and (-webkit-min-device-pixel-ratio: 2) {
-    .logo {
-        font-size: 2.5em;
-    }
-    .navBar div{
-        font-size: 2.5em;
-    }
-}
-
 
 /* ------------------------------------------------- MOBILE -------------------------------------------------------- */
 
@@ -106,7 +100,7 @@ and (-webkit-min-device-pixel-ratio: 2) {
         display: block;
         float: left;
         font-family: 'Cinzel', serif;
-        font-size: 4em;
+        font-size: 7em;
         border: solid;
         border-width: .04em;
         padding-top: .05em;
@@ -141,12 +135,14 @@ and (-webkit-min-device-pixel-ratio: 2) {
         padding-left: .5em;
         padding-right: .5em;
         border: solid;
-        border-width: 2px;
+        border-width: .1em;
         background-color: whitesmoke;
     }
+
     .welcomeMsg h1{
         font-size: 3em;
     }
+
     .welcomeMsg p {
         font-size: 2em;
     }
