@@ -48,7 +48,7 @@
     font-family: 'Cinzel', serif;
     font-size: 2em;
     border: solid;
-    border-width: .1em;
+    border-width:  2px;
     padding-left: .3em;
     padding-right: .3em;
 }
@@ -63,7 +63,7 @@
     font-family: 'PT Serif', serif;
     padding: 1em;
     border: solid;
-    border-width: .2em;
+    border-width: 2px;
     background-color: whitesmoke;
 }
 
@@ -75,7 +75,7 @@
 @media only screen and (max-width: 860px){
 
     .logo {
-        font-size: 1.8em;
+        font-size: 25px;
     }
     .navBar ul{
         display: none;
@@ -84,17 +84,18 @@
         display: block;
         font-size: 15px;
     }
+
 }
 
 @media only screen and (max-width: 500px) {
 
     .topBody {
-        height: 2em;
+        height: 30px;
     }
     .logo {
         text-align: center;
-        height: 37px;
-        font-size: 25px;
+        height: 30px;
+        font-size: 23px;
     }
     .navBar ul{
         display: none;
@@ -102,10 +103,24 @@
     .navBar div {
         padding: 0;
         margin: 0;
-        height: 37px;
-        width: 20px;
+        height: 30px;
+        width: 2em;
         text-align: center;
-        font-size: 15px;
+        font-size: 20px;
         display: block;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .logo {
+        font-size: 18px;
+        height: 22px;
+    }
+    .navBar div {
+        font-size: 15px;
+        height: 22px;
+    }
+    .topBody {
+        height: 22px;
     }
 }
