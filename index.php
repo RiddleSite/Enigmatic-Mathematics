@@ -10,9 +10,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 </head>
-<body style="margin: 10px;">
+<body style="margin: .5em;">
 <div class="logo">
-    <header style="border: solid; border-width: 2px; padding-top: 3px; padding-bottom: 3px; padding-left: 5px; padding-right: 5px;">Enigmatic Mathematics</header>
+    <header>Enigmatic Mathematics</header>
 </div>
 <nav class="navBar">
     <div id="dropIcon"> &#9776 </div>
@@ -26,10 +26,10 @@
 </nav>
 <main class="mainBody">
     <div class="welcomeMsg">
-        <h style="font-size: 20px;">
+        <h style="font-size: 1.2em;">
             Welcome!
         </h>
-        <p>
+        <p style="font-size: 1em;">
             You have arrived at Enigmatic Mathematics, the first stop for math riddlers and freakoids!
         </p>
     </div>

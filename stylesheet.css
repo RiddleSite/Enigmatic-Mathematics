@@ -45,6 +45,12 @@
     float: left;
     font-family: 'Cinzel', serif;
     font-size: 30px;
+    border: solid;
+    border-width: 2px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .mainBody {
