@@ -10,12 +10,8 @@
 .navBar div {
     display: none;
     font-size: 20px;
-    padding-right: 16px;
-    padding-left: 16px;
     border: solid;
     border-width: 2px;
-    padding-top: 10px;
-    padding-bottom: 10px;
 }
 
 #dropIcon {
@@ -72,21 +68,27 @@
     margin: 0;
 }
 
+/* Browser shrink */
 @media only screen and (max-width: 860px){
 
     .logo {
-        font-size: 25px;
+        font-size: 30px;
+        height: 40px;
     }
     .navBar ul{
         display: none;
     }
     .navBar div{
+        text-align: center;
+        width: 2em;
         display: block;
-        font-size: 15px;
+        font-size: 25px;
+        height: 40px;
     }
 
 }
 
+/* Up to iPhone 6 shrink */
 @media only screen and (max-width: 500px) {
 
     .topBody {
@@ -101,8 +103,6 @@
         display: none;
     }
     .navBar div {
-        padding: 0;
-        margin: 0;
         height: 30px;
         width: 2em;
         text-align: center;
@@ -111,7 +111,8 @@
     }
 }
 
-@media only screen and (max-width: 370px) {
+/* iPhone 5 shrink */
+@media only screen and (max-width: 374px) {
     .logo {
         font-size: 18px;
         height: 22px;
