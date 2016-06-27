@@ -97,11 +97,57 @@ and (-webkit-min-device-pixel-ratio: 2) {
     }
 }
 
-@media only screen and (max-device-width: 830px) {
 
-    .navBar ul{
+/* ------------------------------------------------- MOBILE -------------------------------------------------------- */
+
+
+@media only screen and (max-device-width: 830px) {
+    .logo {
+        display: block;
+        float: left;
+        font-family: 'Cinzel', serif;
+        font-size: 4em;
+        border: solid;
+        border-width: .04em;
+        padding-top: .05em;
+        padding-bottom: .05em;
+        padding-left: .1em;
+        padding-right: .1em;
+    }
+
+    .navBar div {
+        display: none;
+        font-size: 4em;
+        padding-right: .5em;
+        padding-left: .5em;
+        border: solid;
+        border-width: .04em;
+        padding-top: .01em;
+        padding-bottom: .01em;
+    }
+
+    .navBar ul {
         display: none;
     }
+
     .navBar div {
         display: block;
     }
+
+    .welcomeMsg {
+        font-family: 'PT Serif', serif;
+        padding-top: .1em;
+        padding-bottom: .1em;
+        padding-left: .5em;
+        padding-right: .5em;
+        border: solid;
+        border-width: 2px;
+        background-color: whitesmoke;
+    }
+    .welcomeMsg h1{
+        font-size: 3em;
+    }
+    .welcomeMsg p {
+        font-size: 2em;
+    }
+}

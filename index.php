@@ -26,10 +26,10 @@
 </nav>
 <main class="mainBody">
     <div class="welcomeMsg">
-        <h style="font-size: 1.2em;">
+        <h1>
             Welcome!
-        </h>
-        <p style="font-size: 1em;">
+        </h1>
+        <p>
             You have arrived at Enigmatic Mathematics, the first stop for math riddlers and freakoids!
         </p>
     </div>
