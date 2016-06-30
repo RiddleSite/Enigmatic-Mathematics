@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="web_effects.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=PT+Serif' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Cinzel' rel='stylesheet' type='text/css'>
+
     <title>Riddles</title>
-    <link rel="stylesheet" type="text/css" href="stylesheet.css">
 
 </head>
 <body>
@@ -16,10 +17,10 @@
     <div class="logo">
         <header>Enigmatic Mathematics</header>
     </div>
-    <nav class="navBar">
+    <nav id="navBar">
         <div id="dropIcon"> &#9776 </div>
-        <ul id="dropDownList">
-            <li id="dropDownListElement">Home</li>
+        <ul id="dropDownList" class="gone">
+            <li>Home</li>
             <li>Log In</li>
             <li>Sign Up</li>
             <li>Riddles</li>
