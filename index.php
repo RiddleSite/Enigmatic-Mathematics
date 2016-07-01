@@ -8,6 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="web_effects.js"></script>
+    <script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+    </script>
+    <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
     <title>Riddles</title>
 
@@ -18,13 +22,26 @@
         <header>Enigmatic Mathematics</header>
     </div>
     <nav id="navBar">
-        <div id="dropIcon"> &#9776 </div>
-        <ul id="dropDownList" class="gone">
-            <li>Home</li>
-            <li>Log In</li>
-            <li>Sign Up</li>
-            <li>Riddles</li>
-            <li>Contact</li>
+        <ul>
+            <li>
+                <a>Home</a>
+            </li>
+
+            <li>
+                <a>Riddles</a>
+            </li>
+
+            <li>
+                <a>Log In</a>
+            </li>
+
+            <li>
+                <a>Sign Up</a>
+            </li>
+
+            <li>
+                <a>Contact</a>
+            </li>
         </ul>
     </nav>
 </header>
@@ -35,8 +52,15 @@
             Welcome!
         </h1>
         <p>
-            You have arrived at Enigmatic Mathematics, the first stop for math riddlers and freakoids!
+            You have arrived at
         </p>
+        <p>
+            $\sum \mathbb{N}\Im G^{M} \forall  \Upsilon \Phi \zeta $ $\boldsymbol{M}\partial \mathit{T} \frac{h }{\xi  }\mathfrak{M}\Lambda\Gamma \Psi \varsigma \mathfrak{s}$
+        </p>
+        <p>
+            the first stop for math riddlers and freakoids!
+        </p>
+
     </div>
 </main>
 </body>

@@ -7,37 +7,24 @@
     font-family: 'PT Serif', serif;
     float: right;
 }
-#navBar div {
-    display: none;
-    font-size: 20px;
-    border: solid;
-    border-width: 2px;
-}
 
-#dropIcon {
-
-
-    font-family: 'Cinzel', serif;
-
-
-}
-
-.dropped {
-    display: block;
-}
 
 
 #navBar ul {
     list-style: none;
-    transform: translateY(-1em);
+    margin-top: 0;
+    padding-left: 16px;
 }
 
 #navBar ul li {
     display: inline;
+}
+
+#navBar ul li a{
     padding-right: .5em;
     padding-left: .5em;
     border: solid;
-    border-width: .15em;
+    border-width: 2px;
     background-color: white;
 }
 
@@ -54,7 +41,6 @@
 
 .mainBody {
     width: 100%;
-    margin-top: .8em;
     display: inline-block;
 }
 
@@ -64,6 +50,8 @@
     border: solid;
     border-width: 2px;
     background-color: whitesmoke;
+    margin-top: 6px;
+    text-align: center;
 }
 
 .welcomeMsg h1 {
@@ -78,61 +66,61 @@
         font-size: 30px;
         height: 40px;
     }
-    .gone{
-        display: none;
-    }
-    #navBar div{
-        text-align: center;
-        width: 2em;
-        display: block;
-        font-size: 25px;
-        height: 40px;
-    }
-    #navBar div:hover {
-        cursor: pointer;
-    }
 
-    #dropIcon {
-        margin-left: 70px;
+    #navBar ul li{
+        font-size: 16px;
     }
 }
 
 /* Up to iPhone 6 shrink */
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 800px) {
 
+    .welcomeMsg {
+        margin-top: 0;
+    }
     .topBody {
-        height: 30px;
+        height: 70px;
     }
     .logo {
-        text-align: center;
-        height: 30px;
-        font-size: 23px;
-    }
-
-    #navBar div {
-        height: 30px;
-        width: 2em;
-        text-align: center;
-        font-size: 20px;
+        float: none;
         display: block;
+        text-align: center;
+        font-size: 24px;
+        height: 30px;
     }
 
-    #dropIcon {
-        margin-left: 80px;
+    #navBar {
+        float: none;
     }
+    #navBar ul {
+        display: table;
+        width: 100%;
+        padding-left: 0;
+        padding-top: .5em;
+    }
+    #navBar ul li {
+        display: table-cell;
+        text-align: center;
+    }
+    #navBar ul li:first-child{
+        text-align: left;
+    }
+    #navBar ul li:last-child {
+        text-align: right;
+    }
+
 }
 
 /* iPhone 5 shrink */
 @media only screen and (max-width: 374px) {
     .logo {
-        font-size: 18px;
-        height: 22px;
-    }
-    #navBar div {
-        font-size: 15px;
-        height: 22px;
+        font-size: 22px;
+        height: 26px;
     }
     .topBody {
-        height: 22px;
+        height: 62px;
+    }
+    #navBar ul li {
+        font-size: 13px;
     }
 }
