@@ -60,8 +60,43 @@
         <p>
             the first stop for math riddlers and freakoids!
         </p>
-
+        <form action="#" method="post">
+            Name: <input type="text" name="name"><br>
+            <input type="submit">
+            <?php
+                $name = htmlspecialchars($_POST["name"]);
+            ?>
     </div>
 </main>
+<?php
+$file = fopen("/keys/Pi_SQL_Keys.txt", "r");
+$line = 0;
+while(! feof($file))
+{
+    $line++;
+    if ($line == "1"){
+        $username = fgets($file);
+    }
+    if ($line == "2"){
+        $password = fgets($file);
+    }
+    else{
+        fclose($file);
+        break;
+    }
+}
+$servername = "192.168.1.14";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+$query = sprintf("SELECT * FROM riddles WHERE name=%s",
+    $name);
+echo $query;
+?>
 </body>
 </html>

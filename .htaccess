@@ -1,0 +1,5 @@
+AuthType Basic 
+AuthName "Enigmatic Mathematics Site" 
+AuthBasicProvider file 
+AuthUserFile /usr/local/data/www/keys/userlist.txt 
+Require valid-user 
