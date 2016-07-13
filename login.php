@@ -19,9 +19,11 @@
 </head>
 <body>
 <header class="topBody">
-    <div class="logo">
-        <header>Enigmatic Mathematics</header>
-    </div>
+    <a href="index.php">
+        <div class="logo">
+            <header>Enigmatic Mathematics</header>
+        </div>
+    </a>
     <nav id="navBar">
         <ul>
             <li>
@@ -48,10 +50,21 @@
 </header>
 <div class="logInWrapper">
     <div class="logInBox">
-        <header style="font-family: 'PT Serif', Serif; font-size: 1.6em;"> Log In </header>
-        Username <input name="Username"> <br>
-        Password <input name="Password">
-    </div>
+        <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Log In </header> <br>
+        <div class="logInInfoWrap">
+            <div class="LogInElement"><em>Username:</em></div>
+            <div class="LogInElement">
+                <input type="text" name="Username" style="width: inherit; border: solid; border-width: 2px; border-radius: 0;">
+            </div>
+            <br>
+            <br>
+            <div class="LogInElement"><em>Password:</em></div>
+            <div class="LogInElement">
+                <input  name="Password" type = "password" style="width: inherit; border: solid; border-width: 2px; border-radius: 0;">
+            </div>
+        </div> <br> <br>
+        <button class="logInButton">Let me in!</button><br><br>
+        <a href="userRecovery.php"><em><b>Forgot password/username?</b></em></a>
 </div>
 
 </body>

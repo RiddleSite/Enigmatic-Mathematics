@@ -1,3 +1,7 @@
+.defaultText {
+    font-family: 'PT Serif', serif;
+}
+
 .topBody {
     width: 100%;
     display: inline-block;
@@ -37,6 +41,10 @@
     border-width:  2px;
     padding-left: .3em;
     padding-right: .3em;
+}
+
+.logo:hover {
+
 }
 
 .mainBody {
@@ -93,11 +101,56 @@
     margin: auto;
 }
 
-a {color:#000000;}      /* unvisited link */
-a:visited {color:#000000;}  /* visited link */
-a:hover {color: #d692a0;}  /* mouse over link */
-a:active {color:#d692a0;}  /* selected link */
+a {
+    color:#000000;
+}
+a:visited {
+    color:#000000;
+}
+a:hover {
+    color: #d692a0;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -ms-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+}
+a:active {
+    color:#d692a0;
+}
+a {
+    text-decoration: none;
+}
 
+.LogInElement{
+    text-align: left;
+    display: inline-block;
+    width: 6em;
+}
+
+.logInInfoWrap {
+    font-family: 'PT Serif', serif;
+    width: 16em;
+}
+
+.logInButton {
+    font-family: 'PT Serif', serif;
+    font-size: 1em;
+    border: solid;
+    border-width: 2px;
+    border-radius: 0;
+    background-color: whitesmoke;
+}
+
+.logInButton:hover {
+    color: #d692a0;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -ms-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    transition: color 0.2s ease-out;
+    cursor: pointer;
+}
 /* Browser shrink */
 @media only screen and (max-width: 860px){
 
@@ -117,8 +170,11 @@ a:active {color:#d692a0;}  /* selected link */
     .welcomeMsg {
         margin-top: 0;
     }
+    .welcomeMsg h1 {
+        font-size: 1.5em;
+    }
     .topBody {
-        height: 70px;
+        height: 4.5em;
     }
     .logo {
         float: none;
@@ -148,6 +204,23 @@ a:active {color:#d692a0;}  /* selected link */
         text-align: right;
     }
 
+    .featRiddleTitle {
+        font-size: 1.5em;
+    }
+
+    .logInBox {
+        margin: 0;
+    }
+    
+    .logInWrapper {
+        display: flex;
+        padding-top: .1em;
+    }
+    
+    .logInInfoWrap {
+        display: initial;
+    }
+
 }
 
 /* iPhone 5 shrink */
@@ -157,7 +230,7 @@ a:active {color:#d692a0;}  /* selected link */
         height: 26px;
     }
     .topBody {
-        height: 62px;
+        height: 4em;
     }
     #navBar ul li {
         font-size: 13px;

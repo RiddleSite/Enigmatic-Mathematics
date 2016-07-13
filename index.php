@@ -19,9 +19,11 @@
 </head>
 <body>
 <header class="topBody">
-    <div class="logo">
-        <header>Enigmatic Mathematics</header>
-    </div>
+    <a href="index.php">
+        <div class="logo">
+            <header>Enigmatic Mathematics</header>
+        </div>
+    </a>
     <nav id="navBar">
         <ul>
             <li>
@@ -56,7 +58,7 @@
             You have arrived at
         </p>
         <p>
-            $\sum \mathbb{N}\Im G^{M} \forall  \Upsilon \Phi \zeta $ $\boldsymbol{M}\partial \mathit{T} \frac{h }{\xi  }\mathfrak{M}\Lambda\Gamma \Psi \varsigma \mathfrak{s}$
+            $\sum \mathbb{N} \Im G^{M} \forall  \Upsilon \Phi \zeta $ $\boldsymbol{M} \partial \mathit{T} \frac{h }{\xi  } \mathfrak{M} \Lambda \Gamma \Psi \varsigma \mathfrak{s}$
         </p>
         <p>
             the first stop for math riddlers and freakoids!
@@ -66,9 +68,15 @@
     <div class="featRiddle">
         <header class="featRiddleTitle">
             <?php
-                echo "Monty Hall Problem"
+                echo "Monty Hall Problem";
             ?>
         </header>
+        <p style="font-family: 'PT Serif', serif; font-size: .9em;">
+                <?php
+                $userName = "Isa Milefchik";
+                echo "Sumbitted by <em>" . $userName . "</em>";
+                ?>
+        </p>
         <hr>
         <p class="featRiddleInfo">
             <?php
