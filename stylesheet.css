@@ -59,6 +59,45 @@
     margin: 0;
 }
 
+.featRiddle {
+    background-color: whitesmoke;
+    border: solid;
+    border-width: 2px;
+    margin-top: .5em;
+    padding: 1em;
+}
+
+.featRiddleTitle {
+    font-family: 'Cinzel', serif;
+    font-size: 2em;
+}
+
+.featRiddleInfo {
+    font-family: 'PT Serif', serif;
+}
+
+.logInBox {
+    width: 100%;
+    background-color: whitesmoke;
+    border: solid;
+    border-width: 2px;
+    text-align: center;
+    padding: 1em;
+    margin: auto;
+    display: table-cell;
+}
+
+.logInWrapper {
+    padding-top: 1em;
+    display: table;
+    margin: auto;
+}
+
+a {color:#000000;}      /* unvisited link */
+a:visited {color:#000000;}  /* visited link */
+a:hover {color: #d692a0;}  /* mouse over link */
+a:active {color:#d692a0;}  /* selected link */
+
 /* Browser shrink */
 @media only screen and (max-width: 860px){
 
