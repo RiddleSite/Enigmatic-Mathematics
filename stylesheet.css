@@ -139,18 +139,54 @@ a {
     border: solid;
     border-width: 2px;
     border-radius: 0;
-    background-color: whitesmoke;
+    background-color: white;
 }
 
 .logInButton:hover {
     color: #d692a0;
     -webkit-transition: color 0.2s ease-out;
     -moz-transition: color 0.2s ease-out;
-    -ms-transition: color 0.2s ease-out;
     -o-transition: color 0.2s ease-out;
     transition: color 0.2s ease-out;
     cursor: pointer;
 }
+
+.logInButton:focus {
+    outline: none;
+}
+
+.logInInput {
+    width: inherit;
+    border: solid;
+    border-width: 2px;
+    border-radius: 0;
+}
+
+.logInInput:focus{
+    border-color: #d692a0;
+    -webkit-transition: border-color 0.1s ease-out;
+    -moz-transition: border-color 0.1s ease-out;
+    -o-transition: border-color 0.1s ease-out;
+    transition: border-color 0.1s ease-out;
+    outline: none;
+}
+
+.logInInput:hover {
+    border-color: #d692a0;
+    -webkit-transition: border-color 0.1s ease-out;
+    -moz-transition: border-color 0.1s ease-out;
+    -o-transition: border-color 0.1s ease-out;
+    transition: border-color 0.1s ease-out;
+    outline: none;
+}
+
+.contactBox {
+    text-align: center;
+    background-color: whitesmoke;
+    border: solid;
+    border-width: 2px;
+}
+
 /* Browser shrink */
 @media only screen and (max-width: 860px){
 

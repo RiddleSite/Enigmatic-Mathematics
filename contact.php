@@ -48,23 +48,15 @@
         </ul>
     </nav>
 </header>
-<div class="logInWrapper">
-    <div class="logInBox">
-        <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Log In </header> <br>
-        <div class="logInInfoWrap">
-            <div class="LogInElement"><em>Username:</em></div>
-            <label class="LogInElement">
-                <input type="text" name="Username" class="logInInput">
-            </label>
-            <br>
-            <br>
-            <div class="LogInElement"><em>Password:</em></div>
-            <label class="LogInElement">
-                    <input name="Password" type="password" class="logInInput">
-            </label>
-        </div> <br> <br>
-        <button class="logInButton">Let me in!</button><br><br>
-        <a href="userRecovery.php"><em><b>Forgot password/username?</b></em></a>
+
+<div class="contactBox">
+    <header style="font-family: 'PT Serif', serif; font-size: 1.5em;">Contact Us</header>
+    <p class="defaultText">
+        Email us at: <br><br> <em><a href="mailto:admin@enigmaticmathematics.com" target="_top">admin@enigmaticmathematics.com</a></em>
+    </p>
+    <form>
+
+    </form>
 </div>
 
 </body>

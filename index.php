@@ -31,7 +31,7 @@
             </li>
 
             <li>
-                <a>Riddles</a>
+                <a href="riddles.php">Riddles</a>
             </li>
 
             <li>
@@ -39,11 +39,11 @@
             </li>
 
             <li>
-                <a>Sign Up</a>
+                <a href="signUp.php">Sign Up</a>
             </li>
 
             <li>
-                <a>Contact</a>
+                <a href="contact.php">Contact</a>
             </li>
         </ul>
     </nav>
