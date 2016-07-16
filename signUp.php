@@ -48,23 +48,34 @@
         </ul>
     </nav>
 </header>
-<div class="logInWrapper">
-    <div class="logInBox">
-        <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Log In </header> <br>
-        <div class="logInInfoWrap">
-            <div class="LogInElement"><em>Username:</em></div>
-            <label class="LogInElement">
-                <input type="text" name="Username" class="generalInput">
-            </label>
-            <br>
-            <br>
-            <div class="LogInElement"><em>Password:</em></div>
-            <label class="LogInElement">
-                    <input name="Password" type="password" class="generalInput">
-            </label>
-        </div> <br> <br>
-        <button class="logInButton">Let me in!</button><br><br>
-        <a href="userRecovery.php"><em><b>Forgot password/username?</b></em></a>
+<div class="signUpBox">
+    <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Sign Up</header>
+    <form class="signUpForm">
+        <label class="defaultText"> <b><em>Username:</em></b>  </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+
+        <label class="defaultText"> <b><em>Password:</em></b> </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+
+        <label class="defaultText"> <b><em>Confirm password:</em></b> </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+
+        <label class="defaultText"> <b><em>E-Mail:</em></b> </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+
+        <label class="defaultText"> <b><em>Username:</em></b> </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+
+        <label class="defaultText"> <b><em>Password:</em></b> </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+
+        <label class="defaultText"> <b><em>Username:</em></b> </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+
+        <label class="defaultText"> <b><em>Password:</em></b> </label>
+        <input class="signUpFormInput" style="float: right;"> <br> <br>
+    </form>
 </div>
+
 
 </body>

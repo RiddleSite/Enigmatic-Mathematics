@@ -155,14 +155,14 @@ a {
     outline: none;
 }
 
-.logInInput {
+.generalInput {
     width: inherit;
     border: solid;
     border-width: 2px;
     border-radius: 0;
 }
 
-.logInInput:focus{
+.generalInput:focus, .signUpFormInput:focus{
     border-color: #d692a0;
     -webkit-transition: border-color 0.1s ease-out;
     -moz-transition: border-color 0.1s ease-out;
@@ -171,7 +171,7 @@ a {
     outline: none;
 }
 
-.logInInput:hover {
+.generalInput:hover, .signUpFormInput:hover{
     border-color: #d692a0;
     -webkit-transition: border-color 0.1s ease-out;
     -moz-transition: border-color 0.1s ease-out;
@@ -180,13 +180,33 @@ a {
     outline: none;
 }
 
-.contactBox {
+.contactBox{
     text-align: center;
     background-color: whitesmoke;
     border: solid;
     border-width: 2px;
 }
 
+.signUpBox {
+    padding: 1em;
+    width: 30em;
+    margin: auto;
+    background-color: whitesmoke;
+    border: solid;
+    border-width: 2px;
+    text-align: center;
+}
+
+.signUpForm {
+    text-align: left;
+    width: 18em;
+}
+
+.signUpFormInput {
+    border: solid;
+    border-width: 2px;
+    border-radius: 0;
+}
 /* Browser shrink */
 @media only screen and (max-width: 860px){
 
