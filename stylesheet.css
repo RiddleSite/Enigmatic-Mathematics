@@ -162,7 +162,7 @@ a {
     border-radius: 0;
 }
 
-.generalInput:focus, .signUpFormInput:focus{
+.generalInput:focus, .signUpFormInput:focus, .signUpFormInput_state:focus{
     border-color: #d692a0;
     -webkit-transition: border-color 0.1s ease-out;
     -moz-transition: border-color 0.1s ease-out;
@@ -171,7 +171,7 @@ a {
     outline: none;
 }
 
-.generalInput:hover, .signUpFormInput:hover{
+.generalInput:hover, .signUpFormInput:hover, .signUpFormInput_state:hover{
     border-color: #d692a0;
     -webkit-transition: border-color 0.1s ease-out;
     -moz-transition: border-color 0.1s ease-out;
@@ -195,6 +195,7 @@ a {
     border: solid;
     border-width: 2px;
     text-align: center;
+    margin-top: 3em;
 }
 
 .signUpForm {
@@ -206,6 +207,15 @@ a {
     border: solid;
     border-width: 2px;
     border-radius: 0;
+}
+
+.signUpFormInput_state{
+    border: solid;
+    border-width: 2px;
+    border-radius: 0;
+    float: right;
+    width: 12em;
+    background-color: white;
 }
 /* Browser shrink */
 @media only screen and (max-width: 860px){
@@ -275,6 +285,16 @@ a {
     
     .logInInfoWrap {
         display: initial;
+    }
+
+    .signUpBox {
+        width: inherit;
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .signUpForm {
+        width: inherit;
     }
 
 }

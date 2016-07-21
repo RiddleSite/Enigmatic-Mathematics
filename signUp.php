@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="web_effects.js"></script>
+    <script src="web_effects.js" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
     </script>
@@ -47,7 +47,7 @@
             </li>
         </ul>
     </nav>
-</header> <br> <br>
+</header>
 <div class="signUpBox">
     <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Sign Up</header>
     <form class="signUpForm">
@@ -55,10 +55,10 @@
         <input class="signUpFormInput" style="float: right;"> <br> <br>
 
         <label class="defaultText"> <b><em> Password: </em></b> </label>
-        <input class="signUpFormInput" style="float: right;"> <br> <br>
+        <input class="signUpFormInput" style="float: right;" type="password"> <br> <br>
 
         <label class="defaultText"> <b><em> Confirm password: </em></b> </label>
-        <input class="signUpFormInput" style="float: right;"> <br> <br>
+        <input class="signUpFormInput" style="float: right;" type="password"> <br> <br>
 
         <label class="defaultText"> <b><em> E-Mail: </em></b> </label>
         <input class="signUpFormInput" style="float: right;"> <br> <br>
@@ -73,7 +73,8 @@
         <input class="signUpFormInput" style="float: right;"> <br> <br>
 
         <label class="defaultText"> <b><em> Country: </em></b> </label>
-        <select class="signUpFormInput" style="float: right; width: 12em; background-color: white;">
+        <select name="countrySelect" onchange="countryChanged(this);" class="signUpFormInput" id="countrySelect" style="float: right; width: 12em; background-color: white;">
+            <option value="US" id="USOption">United States</option>
             <option value="AF">Afghanistan</option>
             <option value="AX">Åland Islands</option>
             <option value="AL">Albania</option>
@@ -309,7 +310,6 @@
             <option value="UA">Ukraine</option>
             <option value="AE">United Arab Emirates</option>
             <option value="GB">United Kingdom</option>
-            <option value="US">United States</option>
             <option value="UM">United States Minor Outlying Islands</option>
             <option value="UY">Uruguay</option>
             <option value="UZ">Uzbekistan</option>
@@ -325,8 +325,8 @@
             <option value="ZW">Zimbabwe</option>
         </select> <br> <br>
 
-        <label class="defaultText" id="stateDrop"> <b><em> State: </em></b> </label>
-        <select class="signUpFormInput" style="float: right; width: 12em; background-color: white;">
+        <label class="defaultText" id="stateDropLabel"> <b><em> State: </em></b> </label>
+        <select name="stateDrop" class="signUpFormInput_state" id="stateDrop">
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -378,7 +378,7 @@
             <option value="WV">West Virginia</option>
             <option value="WI">Wisconsin</option>
             <option value="WY">Wyoming</option>
-        </select> <br> <br>
+        </select>
     </form> <br>
     <button class="logInButton">Submit</button>
 </div>
