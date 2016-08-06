@@ -48,7 +48,6 @@
         </ul>
     </nav>
 </header>
-
 <main class="mainBody">
     <div class="welcomeMsg">
         <h1>

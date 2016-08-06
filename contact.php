@@ -48,7 +48,6 @@
         </ul>
     </nav>
 </header>
-
 <div class="contactBox">
     <header style="font-family: 'PT Serif', serif; font-size: 1.5em;">Contact Us</header>
     <p class="defaultText">
@@ -58,5 +57,4 @@
 
     </form>
 </div>
-
 </body>

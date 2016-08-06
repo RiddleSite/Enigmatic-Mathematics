@@ -200,13 +200,14 @@ a {
 
 .signUpForm {
     text-align: left;
-    width: 18em;
+    width: 20em;
 }
 
 .signUpFormInput {
     border: solid;
     border-width: 2px;
     border-radius: 0;
+    width: 130px;
 }
 
 .signUpFormInput_state{
@@ -214,9 +215,16 @@ a {
     border-width: 2px;
     border-radius: 0;
     float: right;
-    width: 12em;
+    width: 136px;
     background-color: white;
 }
+
+.signUpInfoBox {
+    display: inline-block;
+    float: right;
+    width: 10em;
+}
+
 /* Browser shrink */
 @media only screen and (max-width: 860px){
 
