@@ -390,9 +390,13 @@ if ($action == 'default'):
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
+<<<<<<< Updated upstream
             <br>
         </form>
         </form>
+=======
+        </form> <br>
+>>>>>>> Stashed changes
     </table>
     <input type="hidden" name="action" value="step2">
     <button class="logInButton">Submit</button>
