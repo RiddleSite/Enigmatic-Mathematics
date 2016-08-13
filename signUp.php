@@ -412,7 +412,7 @@ if ($action == 'step2'):
     endif;
 }
     if ($_GET['password'] != $_GET['checkpass']):
-        echo 'Your passwords don\'t even match. Please try again.';
+        echo 'Your passwords don\'t match. Please try again.';
     else:
         $username = isset($_GET['username']) ? $_GET['username'] : 0;
         try {

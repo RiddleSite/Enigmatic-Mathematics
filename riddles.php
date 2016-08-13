@@ -52,6 +52,12 @@
 
 <?php
 $action = isset($_GET['action']) ? $_GET['action'] : 'default';
+try {
+    $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
+    $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+} catch(PDOException $e){
+    echo "Error connecting to mysql";
+}
 ?>
 
 <?php
@@ -76,13 +82,6 @@ $id = isset($_GET['id']) ? $_GET['id'] : 0;
 <?php
 if ($action == 'step2'):
 
-    try {
-        $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
-        $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-    } catch(PDOException $e){
-        echo "Error connecting to mysql";
-    }
-
     $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id");
     $stmt->bindValue(":id", $id);
     $rows = $stmt->execute();
@@ -98,17 +97,27 @@ endif;
 ?>
 
 <?php
-$riddleName = "100 Prisoners and a Light Bulb";
-$riddleInfo = "100 prisoners are imprisoned in solitary cells. Each cell is windowless and soundproof. There's a central living room with one light bulb; the bulb is initially off. No prisoner can see the light bulb from his or her own cell. Each day, the warden picks a prisoner equally at random, and that prisoner visits the central living room; at the end of the day the prisoner is returned to his cell. While in the living room, the prisoner can toggle the bulb if he or she wishes. Also, the prisoner has the option of asserting the claim that all 100 prisoners have been to the living room. If this assertion is false (that is, some prisoners still haven't been to the living room), all 100 prisoners will be shot for their stupidity. However, if it is indeed true, all prisoners are set free and inducted into MENSA, since the world can always use more smart people. Thus, the assertion should only be made if the prisoner is 100% certain of its validity.
-    
-    Before this whole procedure begins, the prisoners are allowed to get together in the courtyard to discuss a plan. What is the optimal plan they can agree on, so that eventually, someone will make a correct assertion?";
-$riddleInfoSub = substr($riddleInfo, 0, 126) . "...";
-$riddleDate = array(7, 11, 2016);
-$riddleAuthor = "Riddle Rick";
 
-for($x = 0; $x < 10; $x++) {
+for($x = 1; $x < 10; $x++) {
+
+//    $riddleName = "100 Prisoners and a Light Bulb";
+//    $riddleInfo = "100 prisoners are imprisoned in solitary cells. Each cell is windowless and soundproof. There's a central living room with one light bulb; the bulb is initially off. No prisoner can see the light bulb from his or her own cell. Each day, the warden picks a prisoner equally at random, and that prisoner visits the central living room; at the end of the day the prisoner is returned to his cell. While in the living room, the prisoner can toggle the bulb if he or she wishes. Also, the prisoner has the option of asserting the claim that all 100 prisoners have been to the living room. If this assertion is false (that is, some prisoners still haven't been to the living room), all 100 prisoners will be shot for their stupidity. However, if it is indeed true, all prisoners are set free and inducted into MENSA, since the world can always use more smart people. Thus, the assertion should only be made if the prisoner is 100% certain of its validity.
+//    Before this whole procedure begins, the prisoners are allowed to get together in the courtyard to discuss a plan. What is the optimal plan they can agree on, so that eventually, someone will make a correct assertion?";
+    $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id");
+    $stmt->bindValue(":id", $x);
+    $rows = $stmt->execute();
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $riddleQuestion = $rows[0]['question'];
+    $riddleAnswer = $rows[0]['answer'];
+    if (strlen($riddleQuestion) > 126){
+        $riddleInfoSub = substr($riddleQuestion, 0, 126) . "...";}
+    else {
+        $riddleInfoSub = $riddleQuestion;
+    }
+    $riddleDate = $rows[0]['date'];
+    $riddleAuthor = $rows[0]['author'];
     echo "<div class = 'riddleDiv'>";
-    echo "<span class = 'riddleName'>" . $riddleName . " " . "</span>";
+    echo "<span class = 'riddleName'>" . $riddleQuestion . " " . "</span>";
     echo "<span class = 'riddleAuthor'>| Submitted by <em>" . $riddleAuthor . "</em> | </span>";
     echo "<span class = 'riddleDate'>" . $riddleDate[0] .
         "/" . $riddleDate[1] . "/" . $riddleDate[2] . "</span><br>";
