@@ -48,41 +48,13 @@
         </ul>
     </nav>
 </header>
-<main class="mainBody">
-    <div class="welcomeMsg">
-        <h1>
-            Hello!
-        </h1>
-        <p>
-            You have arrived at
-        </p>
-        <p>
-            $\sum \mathbb{N} \Im G^{M} \forall  \Upsilon \Phi \zeta $ $\boldsymbol{M} \partial \mathit{T} \frac{h }{\xi  } \mathfrak{M} \Lambda \Gamma \Psi \varsigma \mathfrak{s}$
-        </p>
-        <p>
-            the first stop for math riddlers and freakoids!
-        </p>
+<div class="contactBox">
+    <header style="font-family: 'PT Serif', serif; font-size: 1.5em;">Contact Us</header>
+    <p class="defaultText">
+        Email us at: <br><br> <em><a href="mailto:admin@enigmaticmathematics.com" target="_top">admin@enigmaticmathematics.com</a></em>
+    </p>
+    <form>
 
-    </div>
-    <div class="featRiddle">
-        <header class="featRiddleTitle">
-            <?php
-                echo "Monty Hall Problem";
-            ?>
-        </header>
-        <p style="font-family: 'PT Serif', serif; font-size: .9em;">
-                <?php
-                $userName = "Isa Milefchik";
-                echo "Sumbitted by <em>" . $userName . "</em>";
-                ?>
-        </p>
-        <hr>
-        <p class="featRiddleInfo">
-            <?php
-                echo "Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, \"Do you want to pick door No. 2?\" Is it to your advantage to switch your choice?"
-            ?>
-        </p>
-    </div>
-</main>
+    </form>
+</div>
 </body>
-</html>
