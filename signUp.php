@@ -48,34 +48,43 @@
         </ul>
     </nav>
 </header>
+
+<?php
+$action = isset($_GET['action']) ? $_GET['action'] : 'default';
+?>
+
+<?php
+if ($action == 'default'):
+?>
+<form action='signUp.php'>
 <div class="signUpBox">
     <table>
         <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Sign Up</header>
         <form class="signUpForm">
 
             <label class="defaultText"> <em> First name: </em> </label>
-            <input class="signUpFormInput" style="float: right;"> <br> <br>
+            <input name=firstname class="signUpFormInput" style="float: right;"> <br> <br>
 
             <label class="defaultText"> <em> Last name: </em> </label>
-            <input class="signUpFormInput" style="float: right;"> <br> <br>
+            <input name=lastname class="signUpFormInput" style="float: right;"> <br> <br>
 
             <label class="defaultText"> <em> Username: </em> </label>
-            <input class="signUpFormInput" style="float: right;"> <br> <br>
+            <input name=username class="signUpFormInput" style="float: right;"> <br> <br>
 
             <label class="defaultText"> <em> Password: </em> </label>
-            <input class="signUpFormInput" style="float: right;" type="password"> <br> <br>
+            <input name=password class="signUpFormInput" style="float: right;" type="password"> <br> <br>
 
             <label class="defaultText"> <em> Confirm password: </em> </label>
-            <input class="signUpFormInput" style="float: right;" type="password"> <br> <br>
+            <input name="checkpass" class="signUpFormInput" style="float: right;" type="password"> <br> <br>
 
             <label class="defaultText"> <em> E-Mail: </em> </label>
-            <input class="signUpFormInput" style="float: right;"> <br> <br>
+            <input name=email class="signUpFormInput" style="float: right;"> <br> <br>
 
             <label class="defaultText"> <em> Age: </em> </label>
-            <input class="signUpFormInput" style="float: right;"> <br> <br>
+            <input name=age class="signUpFormInput" style="float: right;"> <br> <br>
 
-            <label class="defaultText"> <em> Country: </em> </label>
-            <select name="countrySelect" onchange="countryChanged(this);" class="signUpFormInput" id="countrySelect" style="float: right; width: 136px; background-color: white;">
+            <label name=country class="defaultText"> <em> Country: </em> </label>
+            <select name="country" onchange="countryChanged(this);" class="signUpFormInput" id="countrySelect" style="float: right; width: 136px; background-color: white;">
                 <option value="US" id="USOption">United States</option>
                 <option value="AF">Afghanistan</option>
                 <option value="AX">Åland Islands</option>
@@ -328,7 +337,7 @@
             </select> <br> <br>
 
             <label class="defaultText" id="stateDropLabel"> <em> State: </em> </label>
-            <select name="stateDrop" class="signUpFormInput_state" id="stateDrop">
+            <select name="state" class="signUpFormInput_state" id="stateDrop">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
                 <option value="AZ">Arizona</option>
@@ -381,20 +390,64 @@
                 <option value="WI">Wisconsin</option>
                 <option value="WY">Wyoming</option>
             </select>
-        </form> <br>
-        <div class="signUpInfoBox">
-            <h4 class="defaultText">
-                <b>Usernames</b>
-            </h4>
-            <p class="defaultText">
-                For usernames please use only alphabetical characters, numbers, or underscores. No other special characters are permitted.
-            </p>
-        </div>
+            <br>
+        </form>
+        </form>
     </table>
+    <input type="hidden" name="action" value="step2">
     <button class="logInButton">Submit</button>
 </div>
 
+    <?php
+endif;
+?>
 
+<?php
+if ($action == 'step2'):
+    foreach ($_GET as $key => $value) {
+    if (!$value):
+        echo "Please enter something into all fields.";
+        break;
+    endif;
+}
+    if ($_GET['password'] != $_GET['checkpass']):
+        echo 'Your passwords don\'t even match. Please try again.';
+    else:
+        $username = isset($_GET['username']) ? $_GET['username'] : 0;
+        try {
+            $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
+            $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+        } catch(PDOException $e){
+            echo "Error connecting to mysql";
+        }
+        $stmt = $db->prepare("SELECT * FROM USERS WHERE username = :username");
+        $stmt->bindValue(":username", $username);
+        $response = $stmt->execute();
+        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($response)):
+            echo 'That username is already taken';
+        else:
+            $stmt = $db->prepare("INSERT INTO USERS (firstname, lastname, username, password, email, age, country, state) VALUES (:firstname, :lastname, :username, :pass, :email, :age, :country, :state)");
+            $stmt->bindValue(":firstname", $_GET['firstname']);
+            $stmt->bindValue(":lastname", $_GET['lastname']);
+            $stmt->bindValue(":username", $_GET['username']);
+            $stmt->bindValue(":pass", md5($_GET['password']));
+            $stmt->bindValue(":email", $_GET['email']);
+            $stmt->bindValue(":age", $_GET['age']);
+            $stmt->bindValue(":country", $_GET['country']);
+            $stmt->bindValue(":state", $_GET['state']);
+            if ($response = $stmt->execute()) {
+                echo "Account successfully created.";
+            }
+            else {
+                echo "Internal error- please try again later.";
+            }
+        endif;
+    endif;
+    ?>
 
+<?php
+endif;
+?>
 
 </body>
