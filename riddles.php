@@ -53,7 +53,7 @@
 <?php
 $action = isset($_GET['action']) ? $_GET['action'] : 'default';
 try {
-    $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
+    $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "username", []);
     $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch(PDOException $e){
     echo "Error connecting to mysql";
@@ -63,13 +63,21 @@ try {
 <?php
 if ($action == 'default'):
     ?>
-    <h3>Search for a riddle by id.</h3>
-    <form action='riddles.php'>
-        Riddle ID:<br>
-        <input type="text" name="id">
-        <input type="hidden" name="action" value="step2">
-        <input type="submit" value="Submit">
+<div class="logInWrapper">
+    <div class="logInBox">
+        <form method="get">
+        <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Search for a riddle by ID</header> <br>
+        <label class="LogInElement">
+            <input type="text" name="id" class="generalInput">
+        </label>
+            <br> <br>
+            <input type="hidden" name="action" value="step2">
+            <input name="submit" type="submit" class="logInButton">
+            <br><br>
     </form>
+    </div>
+    </div>
+</div>
 
     <?php
 endif;
@@ -86,18 +94,25 @@ if ($action == 'step2'):
     $stmt->bindValue(":id", $id);
     $rows = $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //echo '<pre>' . print_r($rows, true) . '</pre>';
+    $riddleTitle = $rows[0]['title'];
+    $riddleQuestion = $rows[0]['question'];
+    $riddleAuthor = $rows[0]['author'];
+    $riddleDate = $rows[0]['date'];
+    echo "<div class=\"featRiddle\">";
+    echo "<header class=\"featRiddleTitle\">";
+    echo $riddleTitle;
+    echo "</header>";
+    echo "<p style=\"font-family: 'PT Serif', serif; font-size: .9em;\">";
+    echo "Submitted by <em>" . $riddleAuthor . "</em>";
+    echo "</p> <hr>";
+    echo "<p class=\"featRiddleInfo\">";
+    echo $riddleQuestion;
+    echo "</p> </div>";
 
-
-
-//        echo $rows[0]['question']."<br>";
-//        echo $rows[0]['answer']."<br>";
-
-endif;
 ?>
 
 <?php
-
+else:
 for($x = 1; $x < 10; $x++) {
 
 //    $riddleName = "100 Prisoners and a Light Bulb";
@@ -107,8 +122,8 @@ for($x = 1; $x < 10; $x++) {
     $stmt->bindValue(":id", $x);
     $rows = $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $riddleTitle = $rows[0]['title'];
     $riddleQuestion = $rows[0]['question'];
-    $riddleAnswer = $rows[0]['answer'];
     if (strlen($riddleQuestion) > 126){
         $riddleInfoSub = substr($riddleQuestion, 0, 126) . "...";}
     else {
@@ -116,23 +131,22 @@ for($x = 1; $x < 10; $x++) {
     }
     $riddleDate = $rows[0]['date'];
     $riddleAuthor = $rows[0]['author'];
-    echo "<div class = 'riddleDiv'>";
-    echo "<span class = 'riddleName'>" . $riddleQuestion . " " . "</span>";
-    echo "<span class = 'riddleAuthor'>| Submitted by <em>" . $riddleAuthor . "</em> | </span>";
-    echo "<span class = 'riddleDate'>" . $riddleDate[0] .
-        "/" . $riddleDate[1] . "/" . $riddleDate[2] . "</span><br>";
-    echo "<span class = 'riddleInfo'>" . $riddleInfoSub . "</span>";
-    echo "</div>";
+    $idLine = "<input type=\"hidden\" name=\"id\" value=\"".$x."\">";
+    if ($riddleTitle and $riddleQuestion and $riddleAuthor and $riddleDate) {
+        echo "<form method=\"GET\">";
+        echo "<button class=\"riddleDiv\">";
+        echo "<span class = 'riddleName'>" . $riddleTitle . " " . "</span>";
+        echo "<span class = 'riddleAuthor'>| Submitted by <em>" . $riddleAuthor . "</em> | </span>";
+        echo "<span class = 'riddleDate'>" . $riddleDate . "</span><br>";
+        echo "<span class = 'riddleInfo'>" . $riddleInfoSub . "</span>";
+        echo $idLine;
+        echo "<input type=\"hidden\" name=\"action\" value=\"step2\">";
+        echo "</button>";
+        echo "</form>";
+    }
 }
-
+endif;
 ?>
-
-if ($action == 'step2'):
-<p class="featRiddleInfo">
-    <?php
-    echo "Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, \"Do you want to pick door No. 2?\" Is it to your advantage to switch your choice?"
-    ?>
-</p>
 
 </body>
 </html>
