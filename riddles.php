@@ -51,9 +51,9 @@
 </header>
 
 <?php
-$action = isset($_GET['action']) ? $_GET['action'] : 'default';
+$get_id = isset($_GET['id']) ? $_GET['id'] : 0;
 try {
-    $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "username", []);
+    $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
     $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch(PDOException $e){
     echo "Error connecting to mysql";
@@ -61,7 +61,7 @@ try {
 ?>
 
 <?php
-if ($action == 'default'):
+if (!$get_id):
     ?>
 <div class="logInWrapper">
     <div class="logInBox">
@@ -71,7 +71,6 @@ if ($action == 'default'):
             <input type="text" name="id" class="generalInput">
         </label>
             <br> <br>
-            <input type="hidden" name="action" value="step2">
             <input name="submit" type="submit" class="logInButton">
             <br><br>
     </form>
@@ -84,14 +83,10 @@ endif;
 ?>
 
 <?php
-$id = isset($_GET['id']) ? $_GET['id'] : 0;
-?>
-
-<?php
-if ($action == 'step2'):
+if ($get_id):
 
     $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id");
-    $stmt->bindValue(":id", $id);
+    $stmt->bindValue(":id", $get_id);
     $rows = $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $riddleTitle = $rows[0]['title'];
@@ -140,7 +135,6 @@ for($x = 1; $x < 10; $x++) {
         echo "<span class = 'riddleDate'>" . $riddleDate . "</span><br>";
         echo "<span class = 'riddleInfo'>" . $riddleInfoSub . "</span>";
         echo $idLine;
-        echo "<input type=\"hidden\" name=\"action\" value=\"step2\">";
         echo "</button>";
         echo "</form>";
     }
