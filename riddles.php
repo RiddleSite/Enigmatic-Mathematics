@@ -51,7 +51,7 @@
 </header>
 
 <?php
-$get_id = isset($_GET['id']) ? $_GET['id'] : 0;
+$get_id = isset($_GET['id']) ? $_GET['id'] : false;
 try {
     $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
     $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -61,30 +61,38 @@ try {
 ?>
 
 <?php
-if (!$get_id):
-    ?>
+if ($get_id === false):
+?>
+
 <div class="logInWrapper">
     <div class="logInBox">
-        <form method="get">
+        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
         <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Search for a riddle by ID</header> <br>
         <label class="LogInElement">
             <input type="text" name="id" class="generalInput">
         </label>
             <br> <br>
-            <input name="submit" type="submit" class="logInButton">
+            <input type="submit" class="logInButton">
             <br><br>
     </form>
+<!--        Now that we are sorting riddles by age, rating, and type, let's add a "filter by" button that includes all
+            of those categories in a pull down menu. I can easily add a function that can search by those
+            parameters if you supply input.
+            Also note- a keyword search is also a possibility with some of the MySQL tools. Might be worth looking into.
+-->
     </div>
     </div>
 </div>
 
-    <?php
+<?php
 endif;
 ?>
 
 <?php
 if ($get_id):
+?>
 
+    <?php
     $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id");
     $stmt->bindValue(":id", $get_id);
     $rows = $stmt->execute();
@@ -108,37 +116,42 @@ if ($get_id):
 
 <?php
 else:
-for($x = 1; $x < 10; $x++) {
+?>
 
-//    $riddleName = "100 Prisoners and a Light Bulb";
-//    $riddleInfo = "100 prisoners are imprisoned in solitary cells. Each cell is windowless and soundproof. There's a central living room with one light bulb; the bulb is initially off. No prisoner can see the light bulb from his or her own cell. Each day, the warden picks a prisoner equally at random, and that prisoner visits the central living room; at the end of the day the prisoner is returned to his cell. While in the living room, the prisoner can toggle the bulb if he or she wishes. Also, the prisoner has the option of asserting the claim that all 100 prisoners have been to the living room. If this assertion is false (that is, some prisoners still haven't been to the living room), all 100 prisoners will be shot for their stupidity. However, if it is indeed true, all prisoners are set free and inducted into MENSA, since the world can always use more smart people. Thus, the assertion should only be made if the prisoner is 100% certain of its validity.
-//    Before this whole procedure begins, the prisoners are allowed to get together in the courtyard to discuss a plan. What is the optimal plan they can agree on, so that eventually, someone will make a correct assertion?";
-    $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id");
-    $stmt->bindValue(":id", $x);
+    <?php
+    $min_id = 1;
+    $max_id = 11;
+    $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id >= :min_id and id <= :max_id");
+    $stmt->bindValue(":min_id", $min_id);
+    $stmt->bindValue(":max_id", $max_id);
     $rows = $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    $riddleTitle = $rows[0]['title'];
-    $riddleQuestion = $rows[0]['question'];
-    if (strlen($riddleQuestion) > 126){
-        $riddleInfoSub = substr($riddleQuestion, 0, 126) . "...";}
-    else {
-        $riddleInfoSub = $riddleQuestion;
+    foreach ($rows as $row) {
+        $riddleTitle = $row['title'];
+        $riddleQuestion = $row['question'];
+        if (strlen($riddleQuestion) > 126) {
+            $riddleInfoSub = substr($riddleQuestion, 0, 126) . "...";
+        } else {
+            $riddleInfoSub = $riddleQuestion;
+        }
+        $riddleDate = $row['date'];
+        $riddleAuthor = $row['author'];
+        $idLine = "<input type=\"hidden\" name=\"id\" value=\"" . $row['id'] . "\">";
+        if ($riddleTitle and $riddleQuestion and $riddleAuthor and $riddleDate) {
+            echo "<form method=\"GET\">";
+            echo "<button class=\"riddleDiv\">";
+            echo "<span class = 'riddleName'>" . $riddleTitle . " " . "</span>";
+            echo "<span class = 'riddleAuthor'>| Submitted by <em>" . $riddleAuthor . "</em> | </span>";
+            echo "<span class = 'riddleDate'>" . $riddleDate . "</span><br>";
+            echo "<span class = 'riddleInfo'>" . $riddleInfoSub . "</span>";
+            echo $idLine;
+            echo "</button>";
+            echo "</form>";
+        }
     }
-    $riddleDate = $rows[0]['date'];
-    $riddleAuthor = $rows[0]['author'];
-    $idLine = "<input type=\"hidden\" name=\"id\" value=\"".$x."\">";
-    if ($riddleTitle and $riddleQuestion and $riddleAuthor and $riddleDate) {
-        echo "<form method=\"GET\">";
-        echo "<button class=\"riddleDiv\">";
-        echo "<span class = 'riddleName'>" . $riddleTitle . " " . "</span>";
-        echo "<span class = 'riddleAuthor'>| Submitted by <em>" . $riddleAuthor . "</em> | </span>";
-        echo "<span class = 'riddleDate'>" . $riddleDate . "</span><br>";
-        echo "<span class = 'riddleInfo'>" . $riddleInfoSub . "</span>";
-        echo $idLine;
-        echo "</button>";
-        echo "</form>";
-    }
-}
+    ?>
+
+<?php
 endif;
 ?>
 

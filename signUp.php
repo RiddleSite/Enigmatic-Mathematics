@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="web_effects.js" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
@@ -80,8 +81,8 @@ if ($action == 'default'):
             <label class="defaultText"> <em> E-Mail: </em> </label>
             <input name=email class="signUpFormInput" style="float: right;"> <br> <br>
 
-            <label class="defaultText"> <em> Age: </em> </label>
-            <input name=age class="signUpFormInput" style="float: right;"> <br> <br>
+            <label class="defaultText"> <em> Birthdate (YYYY-MM-DD): </em> </label>
+            <input name=birthdate class="signUpFormInput" style="float: right;"> <br> <br>
 
             <label name=country class="defaultText"> <em> Country: </em> </label>
             <select name="country" onchange="countryChanged(this);" class="signUpFormInput" id="countrySelect" style="float: right; width: 136px; background-color: white;">
@@ -391,6 +392,8 @@ if ($action == 'default'):
                 <option value="WY">Wyoming</option>
             </select>
             <br>
+        <div class="g-recaptcha" data-sitekey="6Lc89ycTAAAAAO-zHQgGAqsocJ37L6AvigdL13qs"></div>
+<!--        Can you center this? It's driving me crazy but I don't want to mess with your CSS.    -->
         </form>
         </form>
         </form> <br>
@@ -405,46 +408,55 @@ endif;
 
 <?php
 if ($action == 'step2'):
-    foreach ($_GET as $key => $value) {
-    if (!$value):
-        echo "Please enter something into all fields.";
-        break;
-    endif;
-}
-    if ($_GET['password'] != $_GET['checkpass']):
-        echo 'Your passwords don\'t match. Please try again.';
-    else:
-        $username = isset($_GET['username']) ? $_GET['username'] : 0;
-        try {
-            $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
-            $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } catch(PDOException $e){
-            echo "Error connecting to mysql";
+    $captcha = $_POST['g-recaptcha-response'];
+    $secretKey = "secret key";
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+    $responseKeys = json_decode($response,true);
+    if(intval($responseKeys["success"]) !== 1) {
+        foreach ($_GET as $key => $value) {
+            if (!$value):
+                echo "Please enter something into all fields.";
+                break;
+            endif;
         }
-        $stmt = $db->prepare("SELECT * FROM USERS WHERE username = :username");
-        $stmt->bindValue(":username", $username);
-        $response = $stmt->execute();
-        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!empty($response)):
-            echo 'That username is already taken';
+        if ($_GET['password'] != $_GET['checkpass']):
+            echo 'Your passwords don\'t match. Please try again.';
         else:
-            $stmt = $db->prepare("INSERT INTO USERS (firstname, lastname, username, password, email, age, country, state) VALUES (:firstname, :lastname, :username, :pass, :email, :age, :country, :state)");
-            $stmt->bindValue(":firstname", $_GET['firstname']);
-            $stmt->bindValue(":lastname", $_GET['lastname']);
-            $stmt->bindValue(":username", $_GET['username']);
-            $stmt->bindValue(":pass", md5($_GET['password']));
-            $stmt->bindValue(":email", $_GET['email']);
-            $stmt->bindValue(":age", $_GET['age']);
-            $stmt->bindValue(":country", $_GET['country']);
-            $stmt->bindValue(":state", $_GET['state']);
-            if ($response = $stmt->execute()) {
-                echo "Account successfully created.";
+            $username = isset($_GET['username']) ? $_GET['username'] : 0;
+            try {
+                $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "username", []);
+                $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            } catch (PDOException $e) {
+                echo "Error connecting to mysql";
             }
-            else {
-                echo "Internal error- please try again later.";
-            }
+            $stmt = $db->prepare("SELECT * FROM USERS WHERE username = :username");
+            $stmt->bindValue(":username", $username);
+            $response = $stmt->execute();
+            $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (!empty($response)):
+                echo 'That username is already taken';
+            else:
+                $stmt = $db->prepare("INSERT INTO USERS (firstname, lastname, username, password, email, birthdate, country, state) VALUES (:firstname, :lastname, :username, :pass, :email, :birthdate, :country, :state)");
+                $stmt->bindValue(":firstname", $_GET['firstname']);
+                $stmt->bindValue(":lastname", $_GET['lastname']);
+                $stmt->bindValue(":username", $_GET['username']);
+                $stmt->bindValue(":pass", md5($_GET['password']));
+                $stmt->bindValue(":email", $_GET['email']);
+                $stmt->bindValue(":birthdate", $_GET['age']);
+                $stmt->bindValue(":country", $_GET['country']);
+                $stmt->bindValue(":state", $_GET['state']);
+                if ($response = $stmt->execute()) {
+                    echo "Account successfully created.";
+                } else {
+                    echo "Internal error- please try again later.";
+                }
+            endif;
         endif;
-    endif;
+    }
+    else{
+        echo "Error- possibility of spam detected.";
+    }
     ?>
 
 <?php
