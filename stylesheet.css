@@ -261,6 +261,19 @@ a {
     font-size: 16px;
 }
 
+.signUpLabel {
+    font-family: 'PT Serif', serif;
+    float: left;
+}
+
+.captchaWrap {
+    padding-top: 20px;
+}
+
+.g-recaptcha {
+    display: inline-block;
+}
+
 /* Browser shrink */
 @media only screen and (max-width: 860px){
 

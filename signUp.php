@@ -63,28 +63,28 @@ if ($action == 'default'):
         <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Sign Up</header>
         <form class="signUpForm">
 
-            <label class="defaultText"> <em> First name: </em> </label>
+            <label class="signUpLabel"> <em> First name: </em> </label>
             <input name=firstname class="signUpFormInput" style="float: right;"> <br> <br>
 
-            <label class="defaultText"> <em> Last name: </em> </label>
+            <label class="signUpLabel"> <em> Last name: </em> </label>
             <input name=lastname class="signUpFormInput" style="float: right;"> <br> <br>
 
-            <label class="defaultText"> <em> Username: </em> </label>
+            <label class="signUpLabel"> <em> Username: </em> </label>
             <input name=username class="signUpFormInput" style="float: right;"> <br> <br>
 
-            <label class="defaultText"> <em> Password: </em> </label>
+            <label class="signUpLabel"> <em> Password: </em> </label>
             <input name=password class="signUpFormInput" style="float: right;" type="password"> <br> <br>
 
-            <label class="defaultText"> <em> Confirm password: </em> </label>
+            <label class="signUpLabel"> <em> Confirm password: </em> </label>
             <input name="checkpass" class="signUpFormInput" style="float: right;" type="password"> <br> <br>
 
-            <label class="defaultText"> <em> E-Mail: </em> </label>
+            <label class="signUpLabel"> <em> E-Mail: </em> </label>
             <input name=email class="signUpFormInput" style="float: right;"> <br> <br>
 
-            <label class="defaultText"> <em> Birthdate (YYYY-MM-DD): </em> </label>
+            <label class="signUpLabel"> <em> Birthdate (YYYY-MM-DD): </em> </label>
             <input name=birthdate class="signUpFormInput" style="float: right;"> <br> <br>
 
-            <label name=country class="defaultText"> <em> Country: </em> </label>
+            <label name=country class="signUpLabel"> <em> Country: </em> </label>
             <select name="country" onchange="countryChanged(this);" class="signUpFormInput" id="countrySelect" style="float: right; width: 136px; background-color: white;">
                 <option value="US" id="USOption">United States</option>
                 <option value="AF">Afghanistan</option>
@@ -337,7 +337,7 @@ if ($action == 'default'):
                 <option value="ZW">Zimbabwe</option>
             </select> <br> <br>
 
-            <label class="defaultText" id="stateDropLabel"> <em> State: </em> </label>
+            <label class="signUpLabel" id="stateDropLabel"> <em> State: </em> </label>
             <select name="state" class="signUpFormInput_state" id="stateDrop">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -392,7 +392,11 @@ if ($action == 'default'):
                 <option value="WY">Wyoming</option>
             </select>
             <br>
-        <div class="g-recaptcha" data-sitekey="6LfiCCgTAAAAABEDZkMlZWW4pBGnj-IeeH5YH0Jf"></div>
+            
+            <div class="captchaWrap">
+                <div class="g-recaptcha" data-sitekey="6LfiCCgTAAAAABEDZkMlZWW4pBGnj-IeeH5YH0Jf"></div>
+            </div>
+            
 <!--        Can you center this? It's driving me crazy but I don't want to mess with your CSS.    -->
         </form>
         </form>
