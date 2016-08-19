@@ -392,7 +392,7 @@ if ($action == 'default'):
                 <option value="WY">Wyoming</option>
             </select>
             <br>
-        <div class="g-recaptcha" data-sitekey="6Ldm9ycTAAAAAPbsqJLUUBLxkQAToULaE5BwWvbC"></div>
+        <div class="g-recaptcha" data-sitekey="6LfiCCgTAAAAABEDZkMlZWW4pBGnj-IeeH5YH0Jf"></div>
 <!--        Can you center this? It's driving me crazy but I don't want to mess with your CSS.    -->
         </form>
         </form>
@@ -408,7 +408,7 @@ endif;
 
 <?php
 if ($action == 'step2'):
-    $config_array = parse_ini_file("webconfig.ini");
+    $config_array = parse_ini_file(".webconfig");
     $captcha_response = $_POST['g-recaptcha-response'];
     $google_secret = $config_array['google_secret'];
     $remote_ip = $_SERVER['REMOTE_ADDR'];
