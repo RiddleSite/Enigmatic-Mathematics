@@ -392,15 +392,9 @@ if ($action == 'default'):
                 <option value="WY">Wyoming</option>
             </select>
             <br>
-<<<<<<< HEAD
-            
             <div class="captchaWrap">
                 <div class="g-recaptcha" data-sitekey="6LfiCCgTAAAAABEDZkMlZWW4pBGnj-IeeH5YH0Jf"></div>
             </div>
-            
-=======
-        <div class="g-recaptcha" data-sitekey="6LfiCCgTAAAAABEDZkMlZWW4pBGnj-IeeH5YH0Jf"></div>
->>>>>>> origin/riddlesPage
 <!--        Can you center this? It's driving me crazy but I don't want to mess with your CSS.    -->
         </form>
         </form>
