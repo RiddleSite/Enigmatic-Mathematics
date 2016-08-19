@@ -50,13 +50,16 @@
 </header>
 
 <?php
-if (isset($_POST['submit'])):
+if (isset($_GET['submit'])):
+    $config_array = parse_ini_file("webconfig.ini");
     $username = isset($_POST['Username']) ? $_POST['Username'] : 0;
     $password = isset($_POST['Password']) ? $_POST['Password'] : 0;
     if ($password and $username) {
         $password = md5($password);
         try {
-            $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
+            $db_username = $config_array['mySQL_username'];
+            $db_password = $config_array['mySQL_password'];
+            $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", $db_username, $db_password, []);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
         } 
         catch (PDOException $e) {

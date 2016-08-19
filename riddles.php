@@ -52,8 +52,11 @@
 
 <?php
 $get_id = isset($_GET['id']) ? $_GET['id'] : false;
+$config_array = parse_ini_file("webconfig.ini");
 try {
-    $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
+    $db_username = $config_array['mySQL_username'];
+    $db_password = $config_array['mySQL_password'];
+    $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", $db_username, $db_password, []);
     $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 } catch(PDOException $e){
     echo "Error connecting to mysql";
@@ -92,7 +95,7 @@ endif;
 if ($get_id):
 ?>
 
-    <?php
+<?php
     $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id");
     $stmt->bindValue(":id", $get_id);
     $rows = $stmt->execute();
@@ -106,12 +109,12 @@ if ($get_id):
     echo $riddleTitle;
     echo "</header>";
     echo "<p style=\"font-family: 'PT Serif', serif; font-size: .9em;\">";
-    echo "Submitted by <em>" . $riddleAuthor . "</em>";
+    echo "Submitted by <em>" . $riddleAuthor . "</em>  | ";
+    echo "<span class = 'riddleDate'>" . $riddleDate . "</span><br>";
     echo "</p> <hr>";
     echo "<p class=\"featRiddleInfo\">";
     echo $riddleQuestion;
     echo "</p> </div>";
-
 ?>
 
 <?php

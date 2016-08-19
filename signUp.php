@@ -392,7 +392,7 @@ if ($action == 'default'):
                 <option value="WY">Wyoming</option>
             </select>
             <br>
-        <div class="g-recaptcha" data-sitekey="6Lc89ycTAAAAAO-zHQgGAqsocJ37L6AvigdL13qs"></div>
+        <div class="g-recaptcha" data-sitekey="6Ldm9ycTAAAAAPbsqJLUUBLxkQAToULaE5BwWvbC"></div>
 <!--        Can you center this? It's driving me crazy but I don't want to mess with your CSS.    -->
         </form>
         </form>
@@ -408,10 +408,11 @@ endif;
 
 <?php
 if ($action == 'step2'):
-    $captcha = $_POST['g-recaptcha-response'];
-    $secretKey = "secret key";
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha."&remoteip=".$ip);
+    $config_array = parse_ini_file("webconfig.ini");
+    $captcha_response = $_POST['g-recaptcha-response'];
+    $google_secret = $config_array['google_secret'];
+    $remote_ip = $_SERVER['REMOTE_ADDR'];
+    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$google_secret."&response=".$captcha_response."&remoteip=".$remote_ip);
     $responseKeys = json_decode($response,true);
     if(intval($responseKeys["success"]) !== 1) {
         foreach ($_GET as $key => $value) {
@@ -425,7 +426,9 @@ if ($action == 'step2'):
         else:
             $username = isset($_GET['username']) ? $_GET['username'] : 0;
             try {
-                $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "username", []);
+                $db_username = $config_array['mySQL_username'];
+                $db_password = $config_array['mySQL_password'];
+                $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", $db_username, $db_password, []);
                 $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             } catch (PDOException $e) {
                 echo "Error connecting to mysql";
