@@ -36,16 +36,28 @@
             </li>
 
             <li>
-                <a href="login.php" style="text-decoration: none;">Log In</a>
-            </li>
-
-            <li>
                 <a href="signUp.php">Sign Up</a>
             </li>
 
             <li>
                 <a href="contact.php">Contact</a>
             </li>
+            <?php
+            if (isset($_SESSION['username'])):
+                ?>
+                <li>
+                    <a href="logout.php" style="text-decoration: none;">Log Out</a>
+                </li>
+                <?php
+            else:
+                ?>
+                <li>
+                    <a href="login.php" style="text-decoration: none;">Log In</a>
+                </li>
+                <?php
+            endif;
+            ?>
+
         </ul>
     </nav>
 </header>
@@ -142,7 +154,7 @@ if ($action == 'step2'):
     <?php
 endif;
 else:
-    echo "You do not have permission to access this page.";
+    echo "Please sign in to submit a riddle";
 endif;
 ?>
 

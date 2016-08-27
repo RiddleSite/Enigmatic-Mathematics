@@ -6,15 +6,14 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="web_effects.js"></script>
+    <script src="web_effects.js" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
-
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
     </script>
     <script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
     <link rel="shortcut icon" href="favicon.ico" type="favicon/ico">
-
 
     <title>Enigmatic Mathematics</title>
 
@@ -31,15 +30,9 @@
             <li>
                 <a href="index.php" style="text-decoration: none;">Home</a>
             </li>
-<!--            Note- this does the same thing as the "Engimatic Mathematics" button-    -->
-<!--            consider removal or replacement with something more functional   -->
 
             <li>
                 <a href="riddles.php">Riddles</a>
-            </li>
-
-            <li>
-                <a href="login.php" style="text-decoration: none;">Log In</a>
             </li>
 
             <li>
@@ -49,6 +42,22 @@
             <li>
                 <a href="contact.php">Contact</a>
             </li>
+            <?php
+            if (isset($_SESSION['username'])):
+                ?>
+                <li>
+                    <a href="logout.php" style="text-decoration: none;">Log Out</a>
+                </li>
+                <?php
+            else:
+                ?>
+                <li>
+                    <a href="login.php" style="text-decoration: none;">Log In</a>
+                </li>
+                <?php
+            endif;
+            ?>
+
         </ul>
     </nav>
 </header>
