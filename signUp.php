@@ -51,13 +51,13 @@
 </header>
 
 <?php
-$action = isset($_GET['action']) ? $_GET['action'] : 'default';
+$action = isset($_POST['action']) ? $_POST['action'] : 'default';
 ?>
 
 <?php
 if ($action == 'default'):
 ?>
-<form action='signUp.php'>
+<form action=<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
 <div class="signUpBox">
     <table>
         <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Sign Up</header>
@@ -395,7 +395,6 @@ if ($action == 'default'):
             <div class="captchaWrap">
                 <div class="g-recaptcha" data-sitekey="6LfiCCgTAAAAABEDZkMlZWW4pBGnj-IeeH5YH0Jf"></div>
             </div>
-<!--        Can you center this? It's driving me crazy but I don't want to mess with your CSS.    -->
         </form>
         </form>
         </form> <br>
@@ -417,16 +416,16 @@ if ($action == 'step2'):
     $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$google_secret."&response=".$captcha_response."&remoteip=".$remote_ip);
     $responseKeys = json_decode($response,true);
     if(intval($responseKeys["success"]) !== 1) {
-        foreach ($_GET as $key => $value) {
+        foreach ($_POST as $key => $value) {
             if (!$value):
                 echo "Please enter something into all fields.";
                 break;
             endif;
         }
-        if ($_GET['password'] != $_GET['checkpass']):
+        if ($_POST['password'] != $_POST['checkpass']):
             echo 'Your passwords don\'t match. Please try again.';
         else:
-            $username = isset($_GET['username']) ? $_GET['username'] : 0;
+            $username = isset($_POST['username']) ? $_POST['username'] : 0;
             try {
                 $db_username = $config_array['mySQL_username'];
                 $db_password = $config_array['mySQL_password'];
@@ -443,14 +442,14 @@ if ($action == 'step2'):
                 echo 'That username is already taken';
             else:
                 $stmt = $db->prepare("INSERT INTO USERS (firstname, lastname, username, password, email, birthdate, country, state) VALUES (:firstname, :lastname, :username, :pass, :email, :birthdate, :country, :state)");
-                $stmt->bindValue(":firstname", $_GET['firstname']);
-                $stmt->bindValue(":lastname", $_GET['lastname']);
-                $stmt->bindValue(":username", $_GET['username']);
-                $stmt->bindValue(":pass", md5($_GET['password']));
-                $stmt->bindValue(":email", $_GET['email']);
-                $stmt->bindValue(":birthdate", $_GET['age']);
-                $stmt->bindValue(":country", $_GET['country']);
-                $stmt->bindValue(":state", $_GET['state']);
+                $stmt->bindValue(":firstname", $_POST['firstname']);
+                $stmt->bindValue(":lastname", $_POST['lastname']);
+                $stmt->bindValue(":username", $_POST['username']);
+                $stmt->bindValue(":pass", password_hash($_POST['password'], PASSWORD_DEFAULT));
+                $stmt->bindValue(":email", $_POST['email']);
+                $stmt->bindValue(":birthdate", $_POST['age']);
+                $stmt->bindValue(":country", $_POST['country']);
+                $stmt->bindValue(":state", $_POST['state']);
                 if ($response = $stmt->execute()) {
                     echo "Account successfully created.";
                 } else {

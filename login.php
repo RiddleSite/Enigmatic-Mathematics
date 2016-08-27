@@ -54,14 +54,13 @@ if (isset($_GET['submit'])):
     $config_array = parse_ini_file("webconfig.ini");
     $username = isset($_POST['Username']) ? $_POST['Username'] : 0;
     $password = isset($_POST['Password']) ? $_POST['Password'] : 0;
-    if ($password and $username) {
-        $password = md5($password);
+    if ($password and $username):
         try {
             $db_username = $config_array['mySQL_username'];
             $db_password = $config_array['mySQL_password'];
             $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", $db_username, $db_password, []);
             $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } 
+        }
         catch (PDOException $e) {
             echo "Error connecting to mysql";
 
@@ -70,17 +69,16 @@ if (isset($_GET['submit'])):
         $stmt->bindValue(":username", $username);
         $response = $stmt->execute();
         $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if ($password == $response[0]['password']) {
+        if (password_verify($password, $response[0]['password'])):
             session_start();
             $_SESSION['username'] = $username;
-            header("Location: userHomepage.php");
-        } else {
+            header("Location: submission.php");
+        else:
             echo 'Incorrect username/password.';
-        }
-    }
-    else {
+        endif;
+    else:
         echo "Please enter a valid username/password";
-    }
+    endif;
 //    Quick note- this won't run on my computer but works fine on the site. No idea why, of course.
 //    Please run on your computer with correct MySQL user/pass to see if it's just an Ubuntu error.
     
