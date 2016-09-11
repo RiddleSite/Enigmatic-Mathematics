@@ -162,7 +162,7 @@ a {
     border-radius: 0;
 }
 
-.generalInput:focus, .signUpFormInput:focus, .signUpFormInput_state:focus{
+.generalInput:focus, .signUpFormInput:focus, .signUpFormInput_state:focus, .searchInput:focus{
     border-color: #d692a0;
     -webkit-transition: border-color 0.1s ease-out;
     -moz-transition: border-color 0.1s ease-out;
@@ -171,7 +171,7 @@ a {
     outline: none;
 }
 
-.generalInput:hover, .signUpFormInput:hover, .signUpFormInput_state:hover{
+.generalInput:hover, .signUpFormInput:hover, .signUpFormInput_state:hover, .searchInput:hover{
     border-color: #d692a0;
     -webkit-transition: border-color 0.1s ease-out;
     -moz-transition: border-color 0.1s ease-out;
@@ -329,6 +329,24 @@ a {
     cursor: pointer;
 }
 
+.searchInput {
+    display: inline-block;
+    width: inherit;
+    border: solid;
+    border-width: 2px;
+    border-radius: 0;
+}
+
+.searchDropDown{
+    display: inline-block;
+    -webkit-appearance: none;
+    -webkit-border-radius: 0px;
+    border: solid;
+    border-width: 2px;
+    padding: 1px;
+    background-color: white;
+    font-family: 'PT Serif', serif;
+}
 
 
 /* Browser shrink */

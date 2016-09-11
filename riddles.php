@@ -144,12 +144,18 @@ if ($get_id === false):
         <div class="logInBox">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
                 <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Search for a riddle by ID</header> <br>
-                <label class="LogInElement">
-                    <input type="text" name="id" class="generalInput">
+                <label>
+                    <input type="text" name="id" class="searchInput">
+                    <select class="searchDropDown">
+                        <option value="ID">ID</option>
+                        <option value="author">Author</option>
+                        <option value="keyowrd">Keyword</option>
+                    </select>
                 </label>
                 <br> <br>
                 <input type="submit" class="logInButton">
                 <br><br>
+
                 <input id="newOrOld" type="checkbox" style="display: none;" value="new">
 
                 <div class="sortAgeButtonSelected" onclick="toggle(this, 'new')" id="selectedAge">New - Old</div>
