@@ -75,7 +75,7 @@ if (isset($_SESSION['username'])):
     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="signUpBox">
             <table>
-                <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Sign Up</header>
+                <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Submit a Riddle</header>
                 <form class="signUpForm">
 
                     <label class="signUpLabel"> <em> Title: </em> </label>

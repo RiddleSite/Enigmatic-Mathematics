@@ -151,7 +151,7 @@ if ($get_id === false):
                 <input type="submit" class="logInButton">
                 <br><br>
             </form>
-            <!--        Now that we are sorting riddles by age, rating, and type, let's add a "filter by" button that includes all
+            <!--        Now that we are sorting riddles by age and type, let's add a "filter by" button that includes all
                         of those categories in a pull down menu. I can easily add a function that can search by those
                         parameters if you supply input.
                         Also note- a keyword search is also a possibility with some of the MySQL tools. Might be worth looking into.
