@@ -47,3 +47,17 @@ function toggle(element, newOrOld) {
         }
     }
 }
+
+function changeInputName(element) {
+    var value = element.value;
+    var textbox = document.getElementById("searchyInput");
+    if (value == "ID") {
+        textbox.name = "id";
+    }
+    else if (value == "Author") {
+        textbox.name = "author";
+    }
+    else if (value == "Keyword") {
+        textbox.name = "keyword";
+    }
+}

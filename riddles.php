@@ -103,12 +103,15 @@ if ($get_id === false):
     <div class="logInWrapper">
         <div class="logInBox">
             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="get">
-                <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Search for a riddle by ID</header> <br>
-                <label class="LogInElement">
-                    <input type="text" name="id" class="generalInput">
+                <header style="font-family: 'PT Serif', serif; font-size: 1.6em;"> Search for a riddle</header> <br>
+                <label>
+                    <input id="searchyInput" type="text" name="id" class="searchInput">
+                    <select class="searchDropDown" onchange="changeInputName(this)">
+                        <option value="Keyword" id="keyword">Keyword</option>
+                        <option value="ID" id="id">ID</option>
+                        <option value="Author" id="author">Author</option>
+                    </select>
                 </label>
-                <br> <br>
-                <input type="submit" class="logInButton">
                 <br><br>
                 <input id="newOrOld" type="checkbox" style="display: none;" value="new">
                 <select name="category" onchange="categoryChange(this);" class="categoryDropDown">
@@ -121,9 +124,13 @@ if ($get_id === false):
                     <option value="probability" id="probabilityOption">Probability</option>
                     <option value="math" id="MathOption">Mathematics</option>
                 </select>
-                <br><br>
+                <br> <br>
+                <input name="newOrOld" id="newOrOld" type="checkbox" style="display: none;" value="new">
+
                 <div class="sortAgeButtonSelected" onclick="toggle(this, 'new')" id="selectedAge">New - Old</div>
                 <div class="sortAgeButtonBlank" onclick="toggle(this, 'old')" id="nullAge">Old - New</div>
+                <br><br>
+                <input type="submit" class="logInButton">
             </form>
             <!--        Now that we are sorting riddles by age and type, let's add a "filter by" button that includes all
                         of those categories in a pull down menu. I can easily add a function that can search by those
