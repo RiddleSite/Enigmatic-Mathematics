@@ -19,53 +19,13 @@
 
 </head>
 <body>
-<header class="topBody">
-    <a href="index.php">
-        <div class="logo">
-            <header>Enigmatic Mathematics</header>
-        </div>
-    </a>
-    <nav id="navBar">
-        <ul>
-            <li>
-                <a href="index.php" style="text-decoration: none;">Home</a>
-            </li>
-
-            <li>
-                <a href="riddles.php">Riddles</a>
-            </li>
-
-            <li>
-                <a href="signUp.php">Sign Up</a>
-            </li>
-
-            <li>
-                <a href="contact.php">Contact</a>
-            </li>
-            <?php
-            if (isset($_SESSION['username'])):
-                ?>
-                <li>
-                    <a href="logout.php" style="text-decoration: none;">Log Out</a>
-                </li>
-                <?php
-            else:
-                ?>
-                <li>
-                    <a href="login.php" style="text-decoration: none;">Log In</a>
-                </li>
-                <?php
-            endif;
-            ?>
-
-        </ul>
-    </nav>
-</header>
-
 <?php
+require 'navBar.php'; navBarMake();
+$get_date_sort = isset($_GET['newOrOld']) ? $_GET['newOrOld'] : "new";
 $get_id = isset($_GET['id']) ? $_GET['id'] : false;
 $get_author = isset($_GET['author']) ? $_GET['author'] : false;
 $get_category = isset($_GET['category']) ? $_GET['category'] : false;
+$get_category = ($get_category == "all") ? "*" : $get_category;
 $get_keyword = isset($_GET['keyword']) ? $_GET['keyword'] : false;
 $config_array = parse_ini_file("webconfig.ini");
 function print_full_riddle($stmt)
@@ -151,10 +111,8 @@ if ($get_id === false):
                 <input type="submit" class="logInButton">
                 <br><br>
                 <input id="newOrOld" type="checkbox" style="display: none;" value="new">
-
-                <div class="sortAgeButtonSelected" onclick="toggle(this, 'new')" id="selectedAge">New - Old</div>
-                <div class="sortAgeButtonBlank" onclick="toggle(this, 'old')" id="nullAge">Old - New</div>
                 <select name="category" onchange="categoryChange(this);" class="categoryDropDown">
+                    <option value="all" id="EasyOption">All</option>
                     <option value="easy" id="EasyOption">Easy</option>
                     <option value="medium" id="MediumOption">Medium</option>
                     <option value="hard" id="HardOption">Hard</option>
@@ -163,6 +121,9 @@ if ($get_id === false):
                     <option value="probability" id="probabilityOption">Probability</option>
                     <option value="math" id="MathOption">Mathematics</option>
                 </select>
+                <br><br>
+                <div class="sortAgeButtonSelected" onclick="toggle(this, 'new')" id="selectedAge">New - Old</div>
+                <div class="sortAgeButtonBlank" onclick="toggle(this, 'old')" id="nullAge">Old - New</div>
             </form>
             <!--        Now that we are sorting riddles by age and type, let's add a "filter by" button that includes all
                         of those categories in a pull down menu. I can easily add a function that can search by those
@@ -177,42 +138,76 @@ endif;
 ?>
 
 <?php
-if ($get_id):
-    $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id");
-    $stmt->bindValue(":id", $get_id);
-    print_full_riddle($stmt);
-elseif ($get_author):
-    if ($get_category):
-        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE author = :author AND category = :category");
-        $stmt->bindValue(":author", $get_author);
-        $stmt->bindValue(":category", $get_category);
-        print_riddle_previews($stmt);
+if ($get_date_sort == "new"):
+    if ($get_id):
+        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id ORDER BY date DESC");
+        $stmt->bindValue(":id", $get_id);
+        print_full_riddle($stmt);
+    elseif ($get_author):
+        if ($get_category):
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE author = :author AND category = :category ORDER BY date DESC");
+            $stmt->bindValue(":author", $get_author);
+            $stmt->bindValue(":category", $get_category);
+            print_riddle_previews($stmt);
+        else:
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE author = :author ORDER BY date DESC");
+            $stmt->bindValue(":author", $get_author);
+            print_riddle_previews($stmt);
+        endif;
+    elseif ($get_keyword):
+        if ($get_category):
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE question LIKE :keyword AND category = :category ORDER BY date DESC");
+            $stmt->bindValue(":keyword", $get_keyword);
+            $stmt->bindValue(":category", $get_category);
+            print_riddle_previews($stmt);
+        else:
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE question LIKE :keyword ORDER BY date DESC");
+            $stmt->bindValue(":keyword", $get_keyword);
+            print_riddle_previews($stmt);
+        endif;
     else:
-        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE author = :author");
-        $stmt->bindValue(":author", $get_author);
+        $min_id = 1;
+        $max_id = 11;
+        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id >= :min_id and id <= :max_id ORDER BY date DESC");
+        $stmt->bindValue(":min_id", $min_id);
+        $stmt->bindValue(":max_id", $max_id);
         print_riddle_previews($stmt);
     endif;
-elseif ($get_keyword):
-    if ($get_category):
-        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE question LIKE :keyword AND category = :category");
-        $stmt->bindValue(":keyword", $get_keyword);
-        $stmt->bindValue(":category", $get_category);
-        print_riddle_previews($stmt);
+elseif ($get_date_sort == "old"):
+    if ($get_id):
+        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id = :id ORDER BY date ASC");
+        $stmt->bindValue(":id", $get_id);
+        print_full_riddle($stmt);
+    elseif ($get_author):
+        if ($get_category):
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE author = :author AND category = :category ORDER BY date ASC");
+            $stmt->bindValue(":author", $get_author);
+            $stmt->bindValue(":category", $get_category);
+            print_riddle_previews($stmt);
+        else:
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE author = :author ORDER BY date ASC");
+            $stmt->bindValue(":author", $get_author);
+            print_riddle_previews($stmt);
+        endif;
+    elseif ($get_keyword):
+        if ($get_category):
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE question LIKE :keyword AND category = :category ORDER BY date ASC");
+            $stmt->bindValue(":keyword", $get_keyword);
+            $stmt->bindValue(":category", $get_category);
+            print_riddle_previews($stmt);
+        else:
+            $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE question LIKE :keyword ORDER BY date ASC");
+            $stmt->bindValue(":keyword", $get_keyword);
+            print_riddle_previews($stmt);
+        endif;
     else:
-        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE question LIKE :keyword");
-        $stmt->bindValue(":keyword", $get_keyword);
+        $min_id = 1;
+        $max_id = 11;
+        $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id >= :min_id and id <= :max_id ORDER BY date ASC");
+        $stmt->bindValue(":min_id", $min_id);
+        $stmt->bindValue(":max_id", $max_id);
         print_riddle_previews($stmt);
-    endif;
-else:
-    $min_id = 1;
-    $max_id = 11;
-    $stmt = $db->prepare("SELECT * FROM RIDDLES WHERE id >= :min_id and id <= :max_id");
-    $stmt->bindValue(":min_id", $min_id);
-    $stmt->bindValue(":max_id", $max_id);
-    print_riddle_previews($stmt);
-    ?>
-
-    <?php
+        endif;
 endif;
 ?>
 

@@ -19,50 +19,8 @@
 
 </head>
 <body>
-<header class="topBody">
-    <a href="index.php">
-        <div class="logo">
-            <header>Enigmatic Mathematics</header>
-        </div>
-    </a>
-    <nav id="navBar">
-        <ul>
-            <li>
-                <a href="index.php" style="text-decoration: none;">Home</a>
-            </li>
-
-            <li>
-                <a href="riddles.php">Riddles</a>
-            </li>
-
-            <li>
-                <a href="signUp.php">Sign Up</a>
-            </li>
-
-            <li>
-                <a href="contact.php">Contact</a>
-            </li>
-            <?php
-            if (isset($_SESSION['username'])):
-                ?>
-                <li>
-                    <a href="logout.php" style="text-decoration: none;">Log Out</a>
-                </li>
-                <?php
-            else:
-                ?>
-                <li>
-                    <a href="login.php" style="text-decoration: none;">Log In</a>
-                </li>
-                <?php
-            endif;
-            ?>
-
-        </ul>
-    </nav>
-</header>
-
 <?php
+require 'navBar.php'; navBarMake();
 if (isset($_GET['submit'])):
     $config_array = parse_ini_file("webconfig.ini");
     $username = isset($_POST['Username']) ? $_POST['Username'] : 0;

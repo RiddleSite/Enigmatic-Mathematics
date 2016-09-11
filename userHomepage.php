@@ -21,37 +21,8 @@ if (isset($_SESSION['username'])){
 
 </head>
 <body>
-<header class="topBody">
-    <a href="index.php">
-        <div class="logo">
-            <header>Enigmatic Mathematics</header>
-        </div>
-    </a>
-    <nav id="navBar">
-        <ul>
-            <li>
-                <a href="index.php" style="text-decoration: none;">Home</a>
-            </li>
-
-            <li>
-                <a href="riddles.php">Riddles</a>
-            </li>
-
-            <li>
-                <a href="login.php" style="text-decoration: none;">Log In</a>
-            </li>
-
-            <li>
-                <a href="signUp.php">Sign Up</a>
-            </li>
-
-            <li>
-                <a href="contact.php">Contact</a>
-            </li>
-        </ul>
-    </nav>
-</header>
 <?php
+require 'navBar.php'; navBarMake();
     $username = $_SESSION['username'];
     echo "Welcome, " . $username . ".";
     echo "We are currently working on a submissions and control page for our users- please come back later!";
@@ -63,5 +34,3 @@ if (isset($_SESSION['username'])){
 // Will have no idea if any of that works until we put it up. Consider doing a test session where the site is only
 // available to us.
 ?>
-
-
