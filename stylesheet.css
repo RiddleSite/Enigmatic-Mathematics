@@ -171,7 +171,7 @@ a {
     outline: none;
 }
 
-.generalInput:hover, .signUpFormInput:hover, .signUpFormInput_state:hover, .searchInput:hover{
+.generalInput:hover, .signUpFormInput:hover, .signUpFormInput_state:hover, .searchInput:hover, .categoryDropDown:hover{
     border-color: #d692a0;
     -webkit-transition: border-color 0.1s ease-out;
     -moz-transition: border-color 0.1s ease-out;
@@ -346,6 +346,17 @@ a {
     padding: 1px;
     background-color: white;
     font-family: 'PT Serif', serif;
+    outline: none;
+}
+
+.searchDropDown:hover {
+    border-color: #d692a0;
+    -webkit-transition: border-color 0.1s ease-out;
+    -moz-transition: border-color 0.1s ease-out;
+    -o-transition: border-color 0.1s ease-out;
+    transition: border-color 0.1s ease-out;
+    outline: none;
+    cursor: pointer;
 }
 
 

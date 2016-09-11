@@ -152,14 +152,7 @@ if ($get_id === false):
                         <option value="Keyword" id="keyword">Keyword</option>
                     </select>
                 </label>
-                <br> <br>
-                <input type="submit" class="logInButton">
                 <br><br>
-
-                <input name="newOrOld" id="newOrOld" type="checkbox" style="display: none;" value="new">
-
-                <div class="sortAgeButtonSelected" onclick="toggle(this, 'new')" id="selectedAge">New - Old</div>
-                <div class="sortAgeButtonBlank" onclick="toggle(this, 'old')" id="nullAge">Old - New</div>
                 <select name="category" onchange="categoryChange(this);" class="categoryDropDown">
                     <option value="easy" id="EasyOption">Easy</option>
                     <option value="medium" id="MediumOption">Medium</option>
@@ -169,6 +162,13 @@ if ($get_id === false):
                     <option value="probability" id="probabilityOption">Probability</option>
                     <option value="math" id="MathOption">Mathematics</option>
                 </select>
+                <br> <br>
+                <input name="newOrOld" id="newOrOld" type="checkbox" style="display: none;" value="new">
+
+                <div class="sortAgeButtonSelected" onclick="toggle(this, 'new')" id="selectedAge">New - Old</div>
+                <div class="sortAgeButtonBlank" onclick="toggle(this, 'old')" id="nullAge">Old - New</div>
+                <br><br>
+                <input type="submit" class="logInButton">
             </form>
             <!--        Now that we are sorting riddles by age and type, let's add a "filter by" button that includes all
                         of those categories in a pull down menu. I can easily add a function that can search by those
