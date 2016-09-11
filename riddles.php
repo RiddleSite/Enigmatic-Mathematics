@@ -150,6 +150,19 @@ if ($get_id === false):
                 <br> <br>
                 <input type="submit" class="logInButton">
                 <br><br>
+                <input id="newOrOld" type="checkbox" style="display: none;" value="new">
+
+                <div class="sortAgeButtonSelected" onclick="toggle(this, 'new')" id="selectedAge">New - Old</div>
+                <div class="sortAgeButtonBlank" onclick="toggle(this, 'old')" id="nullAge">Old - New</div>
+                <select name="category" onchange="categoryChange(this);" class="categoryDropDown">
+                    <option value="easy" id="EasyOption">Easy</option>
+                    <option value="medium" id="MediumOption">Medium</option>
+                    <option value="hard" id="HardOption">Hard</option>
+                    <option value="cs" id="csOption">CS</option>
+                    <option value="logic" id="logicOption">Logic</option>
+                    <option value="probability" id="probabilityOption">Probability</option>
+                    <option value="math" id="MathOption">Mathematics</option>
+                </select>
             </form>
             <!--        Now that we are sorting riddles by age and type, let's add a "filter by" button that includes all
                         of those categories in a pull down menu. I can easily add a function that can search by those
@@ -157,7 +170,6 @@ if ($get_id === false):
                         Also note- a keyword search is also a possibility with some of the MySQL tools. Might be worth looking into.
             -->
         </div>
-    </div>
     </div>
 
     <?php

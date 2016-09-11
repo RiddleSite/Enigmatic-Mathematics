@@ -1,5 +1,4 @@
 <?php
-$_SESSION['username'] = 'nwenger';
 if (isset($_SESSION['username'])):
 ?>
 <!DOCTYPE html>
