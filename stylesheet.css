@@ -296,7 +296,7 @@ a {
     display: inline-block;
     font-family: 'PT Serif', serif;
     font-size: 14px;
-    padding: 10px;
+    padding: 5px;
     border: solid;
     border-width: 2px;
     background-color: white;
@@ -306,7 +306,7 @@ a {
     display: inline-block;
     font-family: 'PT Serif', serif;
     font-size: 14px;
-    padding: 10px;
+    padding: 5px;
     border-color: #d692a0;
     color: #d692a0;
     border: solid;
@@ -321,8 +321,7 @@ a {
     border-width: 2px;
     -webkit-appearance: none;
     -webkit-border-radius: 0px;
-    padding: 10px;
-    width: 100px;
+    padding: 5px;
     background-color: white;
 }
 
