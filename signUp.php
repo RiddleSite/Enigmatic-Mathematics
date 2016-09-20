@@ -504,7 +504,7 @@ endif;
 
 <?php
 if ($action == 'step2'):
-    $config_array = parse_ini_file("/privateconfig/webconfig.ini");
+    $config_array = parse_ini_file("/home1/isamilefchik/public_html/privateConfig/webconfig.ini");
     $captcha_response = $_POST['g-recaptcha-response'];
     $google_secret = $config_array['google_secret'];
     $remote_ip = $_SERVER['REMOTE_ADDR'];
