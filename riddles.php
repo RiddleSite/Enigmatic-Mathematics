@@ -27,7 +27,7 @@ $get_author = isset($_GET['author']) ? $_GET['author'] : false;
 $get_category = isset($_GET['category']) ? $_GET['category'] : false;
 $get_category = ($get_category == "all") ? "*" : $get_category;
 $get_keyword = isset($_GET['keyword']) ? $_GET['keyword'] : false;
-$config_array = parse_ini_file("webconfig.ini");
+$config_array = parse_ini_file("/privateconfig/webconfig.ini");
 function print_full_riddle($stmt)
 {
     $rows = $stmt->execute();

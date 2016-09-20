@@ -22,7 +22,7 @@
 <?php
 require 'navBar.php'; navBarMake();
 if (isset($_GET['submit'])):
-    $config_array = parse_ini_file("webconfig.ini");
+    $config_array = parse_ini_file("/privateconfig/webconfig.ini");
     $username = isset($_POST['Username']) ? $_POST['Username'] : 0;
     $password = isset($_POST['Password']) ? $_POST['Password'] : 0;
     if ($password and $username):

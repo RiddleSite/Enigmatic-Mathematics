@@ -38,7 +38,7 @@ if (isset($_SESSION['username'])):
 
 Your submissions: <br>
 <?php
-    $config_array = parse_ini_file("webconfig.ini");
+    $config_array = parse_ini_file("/privateconfig/webconfig.ini");
     try {
         $db_username = $config_array['mySQL_username'];
         $db_password = $config_array['mySQL_password'];

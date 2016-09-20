@@ -19,10 +19,51 @@
 
 </head>
 <body>
+<header class="topBody">
+    <a href="index.php">
+        <div class="logo">
+            <header>Enigmatic Mathematics</header>
+        </div>
+    </a>
+    <nav id="navBar">
+        <ul>
+            <li>
+                <a href="index.php" style="text-decoration: none;">Home</a>
+            </li>
+
+            <li>
+                <a href="riddles.php">Riddles</a>
+            </li>
+
+            <li>
+                <a href="signUp.php">Sign Up</a>
+            </li>
+
+            <li>
+                <a href="contact.php">Contact</a>
+            </li>
+            <?php
+            if (isset($_SESSION['username'])):
+                ?>
+                <li>
+                    <a href="logout.php" style="text-decoration: none;">Log Out</a>
+                </li>
+                <?php
+            else:
+                ?>
+                <li>
+                    <a href="login.php" style="text-decoration: none;">Log In</a>
+                </li>
+                <?php
+            endif;
+            ?>
+
+        </ul>
+    </nav>
+</header>
+
+
 <?php
-require 'navBar.php'; navBarMake();
-// temporarily necessary to add a credential in order to access this page- should be fixed soon.
-$_SESSION['username'] = 'nwenger';
 if (isset($_SESSION['username'])):
     $username = $_SESSION['username'];
     $action = isset($_POST['action']) ? $_POST['action'] : 'default';
@@ -54,7 +95,7 @@ if (isset($_SESSION['username'])):
                     </select>
                     <br>
                     <div class="captchaWrap">
-                        <div class="g-recaptcha" data-sitekey="6Ldo8ycTAAAAACDrZl2PJFidOpSL4k1mbYat2acI"></div>
+                        <div class="g-recaptcha" data-sitekey="6LfiCCgTAAAAABEDZkMlZWW4pBGnj-IeeH5YH0Jf"></div>
                     </div>
                 </form>
     </form>
@@ -70,7 +111,7 @@ endif;
 
 <?php
 if ($action == 'step2'):
-    $config_array = parse_ini_file(".webconfig");
+    $config_array = parse_ini_file("/privateconfig/webconfig.ini");
     $captcha_response = $_POST['g-recaptcha-response'];
     $google_secret = $config_array['google_secret'];
     $remote_ip = $_SERVER['REMOTE_ADDR'];

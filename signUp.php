@@ -363,7 +363,7 @@ if ($action == 'default'):
             </select>
             <br>
             <div class="captchaWrap">
-                <div class="g-recaptcha" data-sitekey="6Ldo8ycTAAAAACDrZl2PJFidOpSL4k1mbYat2acI"></div>
+                <div class="g-recaptcha" data-sitekey="6Le7QgcUAAAAAOQbqB3vwQ7yq1YN1Pk3Hl_g0hb8"></div>
             </div>
         </form>
         </form>
@@ -504,7 +504,7 @@ endif;
 
 <?php
 if ($action == 'step2'):
-    $config_array = parse_ini_file(".webconfig");
+    $config_array = parse_ini_file("/privateconfig/webconfig.ini");
     $captcha_response = $_POST['g-recaptcha-response'];
     $google_secret = $config_array['google_secret'];
     $remote_ip = $_SERVER['REMOTE_ADDR'];
