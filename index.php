@@ -6,8 +6,9 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-    <script src="web_effects.js"></script>
+    <script src="web_effects.js" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
   MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
     </script>
@@ -18,36 +19,7 @@
 
 </head>
 <body>
-<header class="topBody">
-    <a href="index.php">
-        <div class="logo">
-            <header>Enigmatic Mathematics</header>
-        </div>
-    </a>
-    <nav id="navBar">
-        <ul>
-            <li>
-                <a href="index.php" style="text-decoration: none;">Home</a>
-            </li>
-
-            <li>
-                <a href="riddles.php">Riddles</a>
-            </li>
-
-            <li>
-                <a href="login.php" style="text-decoration: none;">Log In</a>
-            </li>
-
-            <li>
-                <a href="signUp.php">Sign Up</a>
-            </li>
-
-            <li>
-                <a href="contact.php">Contact</a>
-            </li>
-        </ul>
-    </nav>
-</header>
+<?php require 'navBar.php'; navBarMake(); ?>
 <main class="mainBody">
     <div class="welcomeMsg">
         <h1>
@@ -78,11 +50,11 @@
         </p>
         <hr>
         <p class="featRiddleInfo">
-            <?php
-                echo "Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, \"Do you want to pick door No. 2?\" Is it to your advantage to switch your choice?"
-            ?>
+
+                "Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a car; behind the others, goats. You pick a door, say No. 1, and the host, who knows what's behind the doors, opens another door, say No. 3, which has a goat. He then says to you, "Do you want to pick door No. 2?" Is it to your advantage to switch your choice?"
         </p>
     </div>
+<!--    Maybe instead we could have a space in which we talk about the site? This feels more appropriate for the riddles page-->
 </main>
 </body>
 </html>

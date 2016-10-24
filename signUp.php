@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="stylesheet.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
     <script src="web_effects.js" type="text/javascript"></script>
     <script type="text/x-mathjax-config">
@@ -18,72 +20,42 @@
 
 </head>
 <body>
-<header class="topBody">
-    <a href="index.php">
-        <div class="logo">
-            <header>Enigmatic Mathematics</header>
-        </div>
-    </a>
-    <nav id="navBar">
-        <ul>
-            <li>
-                <a href="index.php" style="text-decoration: none;">Home</a>
-            </li>
-
-            <li>
-                <a href="riddles.php">Riddles</a>
-            </li>
-
-            <li>
-                <a href="login.php" style="text-decoration: none;">Log In</a>
-            </li>
-
-            <li>
-                <a href="signUp.php">Sign Up</a>
-            </li>
-
-            <li>
-                <a href="contact.php">Contact</a>
-            </li>
-        </ul>
-    </nav>
-</header>
-
 <?php
-$action = isset($_GET['action']) ? $_GET['action'] : 'default';
+require 'navBar.php'; navBarMake();
+$action = isset($_POST['action']) ? $_POST['action'] : 'default';
 ?>
 
 <?php
 if ($action == 'default'):
 ?>
-<form action='signUp.php'>
+<form action=<?php echo $_SERVER['PHP_SELF']; ?> method="post">
 <div class="signUpBox">
     <table>
         <header style="font-family: 'PT Serif', serif; font-size: 1.3em; padding-bottom: 1em;">Sign Up</header>
         <form class="signUpForm">
 
-            <label class="defaultText"> <em> First name: </em> </label>
-            <input name=firstname class="signUpFormInput" style="float: right;"> <br> <br>
+            <label class="signUpLabel"> <em> First name: </em> </label>
+            <input id="firstname" name=firstname class="signUpFormInput" style="float: right;" oninput="checkComplete(id)"> <br> <br>
 
-            <label class="defaultText"> <em> Last name: </em> </label>
-            <input name=lastname class="signUpFormInput" style="float: right;"> <br> <br>
+            <label class="signUpLabel"> <em> Last name: </em> </label>
+            <input id="lastname" name=lastname class="signUpFormInput" style="float: right;" oninput="checkComplete(id)"> <br> <br>
 
-            <label class="defaultText"> <em> Username: </em> </label>
-            <input name=username class="signUpFormInput" style="float: right;"> <br> <br>
+            <label class="signUpLabel"> <em> Username: </em> </label>
+            <input id="username" name=username class="signUpFormInput" style="float: right;" oninput="checkComplete(id)"> <br> <br>
 
-            <label class="defaultText"> <em> Password: </em> </label>
-            <input name=password class="signUpFormInput" style="float: right;" type="password"> <br> <br>
+            <label class="signUpLabel"> <em> Password: </em> </label>
+            <input id="password" name=password class="signUpFormInput" style="float: right;" type="password" oninput="checkPass()"> <br> <br>
 
-            <label class="defaultText"> <em> Confirm password: </em> </label>
-            <input name="checkpass" class="signUpFormInput" style="float: right;" type="password"> <br> <br>
+            <label class="signUpLabel"> <em> Confirm password: </em> </label>
+            <input id="checkpass" name="checkpass" class="signUpFormInput" style="float: right;" type="password" oninput="checkMatch()"> <br> <br>
 
-            <label class="defaultText"> <em> E-Mail: </em> </label>
-            <input name=email class="signUpFormInput" style="float: right;"> <br> <br>
+            <label class="signUpLabel"> <em> E-Mail: </em> </label>
+            <input id="email" name=email class="signUpFormInput" style="float: right;" oninput="checkMail()"> <br> <br>
 
-            <label class="defaultText"> <em> Age: </em> </label>
-            <input name=age class="signUpFormInput" style="float: right;"> <br> <br>
+            <label class="signUpLabel"> <em> Birthdate: </em> </label>
+            <input id="birthdate" name=birthdate class="signUpFormInput" style="float: right;" placeholder="YYYY-MM-DD" oninput="checkDate()"> <br> <br>
 
-            <label name=country class="defaultText"> <em> Country: </em> </label>
+            <label name=country class="signUpLabel"> <em> Country: </em> </label>
             <select name="country" onchange="countryChanged(this);" class="signUpFormInput" id="countrySelect" style="float: right; width: 136px; background-color: white;">
                 <option value="US" id="USOption">United States</option>
                 <option value="AF">Afghanistan</option>
@@ -336,7 +308,7 @@ if ($action == 'default'):
                 <option value="ZW">Zimbabwe</option>
             </select> <br> <br>
 
-            <label class="defaultText" id="stateDropLabel"> <em> State: </em> </label>
+            <label class="signUpLabel" id="stateDropLabel"> <em> State: </em> </label>
             <select name="state" class="signUpFormInput_state" id="stateDrop">
                 <option value="AL">Alabama</option>
                 <option value="AK">Alaska</option>
@@ -391,12 +363,141 @@ if ($action == 'default'):
                 <option value="WY">Wyoming</option>
             </select>
             <br>
+            <div class="captchaWrap">
+                <div class="g-recaptcha" data-sitekey="6Le7QgcUAAAAAOQbqB3vwQ7yq1YN1Pk3Hl_g0hb8"></div>
+            </div>
         </form>
         </form>
         </form> <br>
     </table>
     <input type="hidden" name="action" value="step2">
-    <button class="logInButton">Submit</button>
+    <button id="submit" class="signUpButton" disabled>Submit</button>
+    <script>
+        var check_complete = {"firstname": 0, "lastname": 0, "username": 0, "password": 0, "checkpass": 0, "email": 0, "birthdate": 0};
+        function checkSubmit(){
+            var submitBtn = document.getElementById("submit");
+            var button = 1;
+            for (var element in check_complete){
+                if (!check_complete[element]){
+                    button = 0;
+                }
+            }
+            if (button){
+                submitBtn.disabled = false;
+                submitBtn.className += " signUpButtonActive";
+            }
+            else {
+                submitBtn.disabled = true;
+            }
+        }
+        function checkComplete(id){
+            var name = document.getElementById(id);
+            if (!name.value) {
+                name.style.borderColor = "red";
+                check_complete[id] = 0;
+            }
+            else {
+                name.style.borderColor = "green";
+                check_complete[id] = 1;
+            }
+        checkSubmit();
+        }
+        function checkPass(){
+            var score = 0;
+            var pass_box = document.getElementById("password");
+            var password = document.getElementById("password").value;
+            try {
+                var special = (password.match(/[@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g)).length;
+            }
+            catch(e) {
+                special = 0;
+            }
+            var upper = password.replace(/[^A-Z]/g, "").length;
+            var numbers = password.replace(/[^0-9]/g,"").length;
+            var lower = password.length - upper - numbers - special;
+            if (password.length < 5) {
+                score += 5;
+            }
+            else if (password.length < 7 && password.length >= 5) {
+                score += 10;
+            }
+            else if (password.length >= 7 && password.length < 9) {
+                score += 15;
+            }
+            else {
+                score += 20;
+            }
+            if (upper > 0 ^ lower > 0){
+                score += 10
+            }
+            else if (upper > 0 && lower > 0) {
+                score += 20
+            }
+            if (numbers > 1 && numbers < 3){
+                score += 5
+            }
+            else if (numbers >= 3){
+                score += 10
+            }
+            if (special == 1){
+                score += 10
+            }
+            else if (special > 1){
+                score += 20
+            }
+            if (score > 40){
+                pass_box.style.borderColor = "green";
+                check_complete["password"] = 1;
+            }
+            else {
+                pass_box.style.borderColor = "red";
+                check_complete["password"] = 0;
+            }
+        checkSubmit()
+        }
+        function checkMatch() {
+            var pw = document.getElementById("password").value;
+            var check_box = document.getElementById("checkpass");
+            var check = check_box.value;
+            if (pw === check){
+                check_box.style.borderColor = "green";
+                check_complete["checkpass"] = 1;
+            }
+            else {
+                check_box.style.borderColor = "red";
+                check_complete["checkpass"] = 0;
+            }
+        checkSubmit()
+        }
+        function checkMail() {
+            var email_box = document.getElementById("email");
+            var email = email_box.value;
+            var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (re.test(email)){
+                email_box.style.borderColor = "green";
+                check_complete["email"] = 1;
+            }
+            else {
+                email_box.style.borderColor = "red";
+                check_complete["email"] = 0;
+            }
+        checkSubmit()
+        }
+        function checkDate(){
+            var date_box = document.getElementById("birthdate");
+            var birthdate = date_box.value;
+            var re = /^\d{4}-\d{2}-\d{2}$/;
+            if (birthdate.match(re)){
+                date_box.style.borderColor = "green";
+                check_complete["birthdate"] = 1;
+            }
+            else {
+                date_box.style.borderColor = "red";
+                check_complete["birthdate"] = 0;
+            }
+        checkSubmit();
+        }
+    </script>
 </div>
 
     <?php
@@ -405,48 +506,59 @@ endif;
 
 <?php
 if ($action == 'step2'):
-    foreach ($_GET as $key => $value) {
-    if (!$value):
-        echo "Please enter something into all fields.";
-        break;
-    endif;
-}
-    if ($_GET['password'] != $_GET['checkpass']):
-        echo 'Your passwords don\'t even match. Please try again.';
-    else:
-        $username = isset($_GET['username']) ? $_GET['username'] : 0;
-        try {
-            $db = new PDO("mysql:host=localhost;dbname=TEST;charset=utf8", "username", "password", []);
-            $db ->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } catch(PDOException $e){
-            echo "Error connecting to mysql";
+    $config_array = parse_ini_file("/home1/isamilefchik/public_html/privateConfig/webconfig.ini");
+    $captcha_response = $_POST['g-recaptcha-response'];
+    $google_secret = $config_array['google_secret'];
+    $remote_ip = $_SERVER['REMOTE_ADDR'];
+    $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$google_secret."&response=".$captcha_response."&remoteip=".$remote_ip);
+    $responseKeys = json_decode($response,true);
+    if(intval($responseKeys["success"]) !== 1) {
+    	echo "Error- possibility of spam detected. Please complete the Captcha.";
+    	}
+    else{
+        foreach ($_POST as $key => $value) {
+            if (!$value):
+                echo "Please enter something into all fields.";
+                break;
+            endif;
         }
-        $stmt = $db->prepare("SELECT * FROM USERS WHERE username = :username");
-        $stmt->bindValue(":username", $username);
-        $response = $stmt->execute();
-        $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!empty($response)):
-            echo 'That username is already taken';
+        if ($_POST['password'] != $_POST['checkpass']):
+            echo 'Your passwords don\'t match. Please try again.';
         else:
-            $stmt = $db->prepare("INSERT INTO USERS (firstname, lastname, username, password, email, age, country, state) VALUES (:firstname, :lastname, :username, :pass, :email, :age, :country, :state)");
-            $stmt->bindValue(":firstname", $_GET['firstname']);
-            $stmt->bindValue(":lastname", $_GET['lastname']);
-            $stmt->bindValue(":username", $_GET['username']);
-            $stmt->bindValue(":pass", md5($_GET['password']));
-            $stmt->bindValue(":email", $_GET['email']);
-            $stmt->bindValue(":age", $_GET['age']);
-            $stmt->bindValue(":country", $_GET['country']);
-            $stmt->bindValue(":state", $_GET['state']);
-            if ($response = $stmt->execute()) {
-                echo "Account successfully created.";
+            $username = isset($_POST['username']) ? $_POST['username'] : 0;
+            try {
+                $db_username = $config_array['mySQL_username'];
+                $db_password = $config_array['mySQL_password'];
+                $db = new PDO("mysql:host=localhost;dbname=isamilef_EnigmaticMathematics;charset=utf8", $db_username, $db_password, []);
+                $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            } catch (PDOException $e) {
+                echo "Error connecting to mysql";
             }
-            else {
-                echo "Internal error- please try again later.";
-            }
+            $stmt = $db->prepare("SELECT * FROM USERS WHERE username = :username");
+            $stmt->bindValue(":username", $username);
+            $response = $stmt->execute();
+            $response = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (!empty($response)):
+                echo 'That username is already taken';
+            else:
+                $stmt = $db->prepare("INSERT INTO USERS (firstname, lastname, username, password, email, birthdate, country, state) VALUES (:firstname, :lastname, :username, :pass, :email, :birthdate, :country, :state)");
+                $stmt->bindValue(":firstname", $_POST['firstname']);
+                $stmt->bindValue(":lastname", $_POST['lastname']);
+                $stmt->bindValue(":username", $_POST['username']);
+                $stmt->bindValue(":pass", password_hash($_POST['password'], PASSWORD_DEFAULT));
+                $stmt->bindValue(":email", $_POST['email']);
+                $stmt->bindValue(":birthdate", $_POST['age']);
+                $stmt->bindValue(":country", $_POST['country']);
+                $stmt->bindValue(":state", $_POST['state']);
+                if ($response = $stmt->execute()) {
+                    echo "Account successfully created.";
+                } else {
+                    echo "Internal error- please try again later.";
+                }
+            endif;
         endif;
-    endif;
+    }
     ?>
-
 <?php
 endif;
 ?>
